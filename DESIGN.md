@@ -1,5 +1,5 @@
 ---
-name: Isabella Monteiro — Comunicação para Bandas
+name: Isabella Monteiro | Comunicação para Bandas
 description: Um press kit vivo da cena independente, impresso em tela.
 colors:
   palco-preto: "#151413"
@@ -59,7 +59,7 @@ components:
     padding: "0"
 ---
 
-# Design System: Isabella Monteiro — Comunicação para Bandas
+# Design System: Isabella Monteiro | Comunicação para Bandas
 
 ## Overview
 

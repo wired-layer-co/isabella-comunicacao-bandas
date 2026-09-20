@@ -37,7 +37,7 @@ body::before {
   position: fixed;
   z-index: 100;
   inset: 0;
-  background: url('/socialmedia/textures/paper-grain.png') repeat;
+  background: url('./assets/paper-grain.png') repeat;
   content: '';
   opacity: 0.12;
   pointer-events: none;
@@ -155,7 +155,7 @@ img {
   display: grid;
   min-height: 100vh;
   min-height: 100svh;
-  grid-template-columns: minmax(0, 3fr) minmax(290px, 1fr);
+  grid-template-columns: minmax(0, 68fr) minmax(390px, 32fr);
   grid-template-rows: 64px 1fr auto;
   overflow: hidden;
   background: var(--ink);
@@ -196,9 +196,9 @@ img {
   grid-row: 2;
   flex-direction: column;
   margin: 0;
-  padding: 40px 0 56px var(--gutter);
+  padding: 40px clamp(22px, 3vw, 54px) 56px var(--gutter);
   font-family: 'Bodoni Moda Variable', Georgia, serif;
-  font-size: clamp(4.9rem, 9.4vw, 10rem);
+  font-size: clamp(4.2rem, 6.35vw, 7.5rem);
   font-variation-settings: 'opsz' 72, 'wght' 610;
   letter-spacing: -0.04em;
   line-height: 0.76;
@@ -207,7 +207,7 @@ img {
 
 .hero h1 span:nth-child(2) {
   position: relative;
-  left: 7vw;
+  left: 0;
   color: var(--red);
   font-style: italic;
   white-space: nowrap;
@@ -216,7 +216,7 @@ img {
 .hero h1 span:last-child {
   position: relative;
   z-index: 3;
-  left: 2vw;
+  left: 0;
   white-space: nowrap;
 }
 
@@ -226,7 +226,7 @@ img {
   grid-row: 2;
   min-width: 0;
   align-self: stretch;
-  margin: 22px var(--gutter) 36px -8vw;
+  margin: 22px var(--gutter) 36px 0;
   overflow: hidden;
   transform: rotate(1.4deg);
 }
@@ -327,9 +327,16 @@ img {
   white-space: nowrap;
 }
 
-.ticker div {
+.ticker-track {
+  display: flex;
   width: max-content;
   animation: ticker 24s linear infinite;
+}
+
+.ticker-track span {
+  display: block;
+  flex: none;
+  padding-right: 1.2em;
 }
 
 @keyframes ticker {
@@ -562,6 +569,48 @@ img {
 
 .service-card-3 .card-stack {
   background: #cbc4af;
+}
+
+.planning-sheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 18px;
+  color: var(--ink);
+  background: var(--paper);
+  text-transform: uppercase;
+}
+
+.planning-sheet b {
+  font-family: 'Bodoni Moda Variable', Georgia, serif;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-variation-settings: 'opsz' 48, 'wght' 650;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.planning-sheet i {
+  padding-top: 12px;
+  border-top: 1px solid var(--line-dark);
+  font-size: 0.57rem;
+  font-style: normal;
+  font-weight: 730;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+
+.planning-sheet.layer-1 {
+  background: var(--paper);
+}
+
+.planning-sheet.layer-2 {
+  color: var(--paper);
+  background: var(--red);
+}
+
+.planning-sheet.layer-3 {
+  color: var(--paper);
+  background: var(--ink);
 }
 
 .service-card-4 .card-stack {
@@ -886,7 +935,7 @@ img {
 
 .site-footer {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr auto auto;
   gap: 30px;
   align-items: center;
   padding: 24px var(--gutter);
@@ -908,18 +957,18 @@ img {
   text-align: center;
 }
 
-.site-footer a:last-child {
+.site-footer a:nth-last-child(-n + 2) {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
 
 @media (max-width: 1080px) {
   .hero {
-    grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
+    grid-template-columns: minmax(0, 62fr) minmax(320px, 38fr);
   }
 
   .hero h1 {
-    font-size: clamp(4.2rem, 9.7vw, 7.2rem);
+    font-size: clamp(3.4rem, 5.8vw, 4.5rem);
   }
 
   .about {

@@ -14,13 +14,13 @@ const services = [
     id: 'video',
     title: 'Captação e edição de vídeo',
     description: 'Reels e TikToks para lançamentos, divulgação de shows, clipes e material dinâmico para redes sociais.',
-    covers: ['images/show-03.webp', 'images/show-06.webp', 'images/show-05.webp'],
+    covers: ['images/video-cover-1.webp', 'images/video-cover-2.webp', 'images/video-cover-3.webp'],
   },
   {
     id: 'social',
     title: 'Gerenciamento de redes sociais',
     description: 'Planejamento de conteúdo, cronograma estratégico e gestão de presença digital em todas as redes.',
-    covers: ['images/design-ego-2.webp', 'images/show-hero.webp', 'images/design-ego-3.webp'],
+    covers: [],
   },
   {
     id: 'design',
@@ -32,13 +32,14 @@ const services = [
 
 const videoPosts = ['DcRoU84BxO2', 'DanYMZZuH8V', 'DYn16xdO8mv', 'DWUcUc6gT3Z', 'DV3ZrV8Dskl', 'DVErpd1Afk6']
 const animationPosts = ['DcbWDmAu1Y2', 'DcbehTuhsID']
+const tickerText = 'fotografia · vídeo · redes sociais · design · fotografia · vídeo · redes sociais · design · '
 const showPhotos = ['show-01.webp', 'show-02.webp', 'show-03.webp', 'show-04.webp', 'show-05.webp', 'show-06.webp']
 const designWorks = [
   ['design-hayley.webp', 'Pôster Hayley Williams'],
-  ['design-ego-1.webp', 'Revista Ego Death at a Bachelorette Party — parte 1'],
-  ['design-ego-2.webp', 'Revista Ego Death at a Bachelorette Party — parte 2'],
-  ['design-ego-3.webp', 'Revista Ego Death at a Bachelorette Party — parte 3'],
-  ['design-ego-4.webp', 'Revista Ego Death at a Bachelorette Party — parte 4'],
+  ['design-ego-1.webp', 'Revista Ego Death at a Bachelorette Party · parte 1'],
+  ['design-ego-2.webp', 'Revista Ego Death at a Bachelorette Party · parte 2'],
+  ['design-ego-3.webp', 'Revista Ego Death at a Bachelorette Party · parte 3'],
+  ['design-ego-4.webp', 'Revista Ego Death at a Bachelorette Party · parte 4'],
   ['design-ode.webp', 'Zine Ode to the Mets'],
 ]
 
@@ -114,7 +115,7 @@ function About() {
       <div className="about-copy">
         <p className="about-intro">Muito prazer, sou a <strong>Isabella Monteiro</strong>.</p>
         <p>Apaixonada por rock e pela cena independente desde 2023, quando comecei a acompanhar de perto o movimento no Rio Grande do Sul. Hoje, morando em Curitiba, uno essa vivência e paixão com a minha formação em publicidade e propaganda.</p>
-        <p>Sei que o som de uma banda tem alma, mas a internet exige estratégia, estética e constância — e músicos não deveriam ter que virar criadores de conteúdo para serem ouvidos.</p>
+        <p>Sei que o som de uma banda tem alma, mas a internet exige estratégia, estética e constância. Músicos não deveriam ter que virar criadores de conteúdo para serem ouvidos.</p>
         <p>Meu objetivo é cuidar de toda a comunicação, imagem e redes sociais do seu projeto, para que vocês apenas façam o que fazem de melhor: tocar.</p>
       </div>
     </section>
@@ -131,7 +132,19 @@ function ServiceCard({ service, active, onSelect, index }) {
       onClick={onSelect}
     >
       <span className="card-stack" aria-hidden="true">
-        {service.covers.map((cover, coverIndex) => (
+        {service.id === 'social' ? (
+          <>
+            <span className="card-layer layer-1 planning-sheet">
+              <b>Planejamento</b><i>voz · momento · objetivo</i>
+            </span>
+            <span className="card-layer layer-2 planning-sheet">
+              <b>Cronograma</b><i>reels · posts · stories</i>
+            </span>
+            <span className="card-layer layer-3 planning-sheet">
+              <b>Pauta da semana</b><i>lançamento · bastidores · agenda</i>
+            </span>
+          </>
+        ) : service.covers.map((cover, coverIndex) => (
           <span className={`card-layer layer-${coverIndex + 1}`} key={cover}>
             <img src={asset(cover)} alt="" />
           </span>
@@ -245,7 +258,7 @@ function Services() {
     <section className="services" id="servicos">
       <header className="services-heading">
         <h2>O que<br />eu faço?</h2>
-        <p>Apoio seu projeto do jeito que você precisar — em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda ativa e profissional no digital.</p>
+        <p>Apoio seu projeto do jeito que você precisar. Pode ser em uma demanda pontual, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda ativa e profissional no digital.</p>
       </header>
       <div className="service-deck" aria-label="Escolha um serviço para ver os trabalhos">
         {services.map((service, index) => (
@@ -288,6 +301,7 @@ function Footer() {
       <a href="#inicio">Isabella Monteiro</a>
       <p>Estratégia, estética e constância para a cena independente.</p>
       <a href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
+      <a href="https://portfolio.wired.rs/creative" target="_blank" rel="noreferrer">feito por wired layer co.</a>
     </footer>
   )
 }
@@ -300,7 +314,10 @@ export default function App() {
       <main id="conteudo">
         <Hero />
         <div className="ticker" aria-hidden="true">
-          <div>fotografia · vídeo · redes sociais · design · fotografia · vídeo · redes sociais · design ·</div>
+          <div className="ticker-track">
+            <span>{tickerText}{tickerText}</span>
+            <span>{tickerText}{tickerText}</span>
+          </div>
         </div>
         <About />
         <Services />

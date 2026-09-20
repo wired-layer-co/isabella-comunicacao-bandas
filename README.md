@@ -1,4 +1,4 @@
-# Isabella Monteiro — Comunicação para Bandas
+# Isabella Monteiro | Comunicação para Bandas
 
 Site de apresentação dos serviços de comunicação, fotografia, vídeo, design e redes sociais para bandas.
 
