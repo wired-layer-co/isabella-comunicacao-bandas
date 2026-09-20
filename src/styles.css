@@ -175,13 +175,16 @@ img {
 }
 
 .hero-index {
+  position: absolute;
+  z-index: 6;
+  top: 82px;
+  left: var(--gutter);
   grid-column: 1 / -1;
-  align-self: end;
-  padding: 0 var(--gutter) 16px;
+  padding: 0;
   font-size: 0.7rem;
   font-variation-settings: 'wdth' 120, 'wght' 650;
   letter-spacing: 0.14em;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
 }
 
@@ -190,6 +193,7 @@ img {
   z-index: 4;
   display: flex;
   align-self: center;
+  grid-row: 2;
   flex-direction: column;
   margin: 0;
   padding: 40px 0 56px var(--gutter);
@@ -219,6 +223,7 @@ img {
 .hero-photo {
   position: relative;
   z-index: 2;
+  grid-row: 2;
   min-width: 0;
   align-self: stretch;
   margin: 22px var(--gutter) 36px -8vw;
@@ -261,6 +266,7 @@ img {
   z-index: 4;
   display: grid;
   grid-column: 1 / -1;
+  grid-row: 3;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 30px;
@@ -995,6 +1001,7 @@ img {
   }
 
   .hero-index {
+    position: static;
     order: 0;
     align-self: stretch;
     padding: 18px var(--gutter) 14px;
