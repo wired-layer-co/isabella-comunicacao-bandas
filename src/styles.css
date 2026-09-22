@@ -294,10 +294,10 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-poster .hero-meta { grid-template-columns:1fr; gap:10px; margin-top:20px; }
   .hero-poster .hero-meta p { max-width:32ch; font-size:.7rem; }
   .hero-poster .hero-meta p:last-child { justify-self:start; font-size:.57rem; text-align:left; }
-  .hero-poster .button-link { top:auto; right:var(--gutter); bottom:18px; left:var(--gutter); width:auto; min-height:48px; }
+  .hero-poster .button-link { position:relative; top:auto; right:auto; bottom:auto; left:auto; display:flex; width:100%; margin-top:18px; min-height:48px; }
   .hero-poster .button-link { color:var(--paper); border-color:var(--ink); background:var(--ink); }
   .hero-poster .button-link:hover { color:var(--ink); border-color:var(--paper); background:var(--paper); }
-  .hero-poster .hero-collage { right:26px; bottom:86px; left:26px; height:clamp(210px,34vh,300px); }
+  .hero-poster .hero-collage { right:26px; bottom:-72px; left:26px; height:clamp(250px,40vh,340px); }
   .hero-poster .hero-collage img { border-width:3px; }
   .hero-poster .hero-paper { inset:12px -12px -7px; }
 }
