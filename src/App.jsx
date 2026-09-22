@@ -122,6 +122,7 @@ function WorkCard({ work, index, previewing = false, onPreview }) {
   }, [playing, embedStatus, embedAttempt])
 
   const startEmbed = () => { setPlaying(true); setEmbedStatus('loading') }
+  const closeEmbed = () => { setPlaying(false); setEmbedStatus('idle'); setEmbedAttempt(0) }
   const retryEmbed = () => { setEmbedStatus('loading'); setEmbedAttempt((attempt) => attempt + 1) }
 
   return <article className={`work-card${portrait ? ' is-portrait' : ''}${playing ? ' is-playing' : ''}${embedStatus === 'ready' ? ' is-embed-ready' : ''}${embedStatus === 'error' ? ' is-embed-error' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
@@ -129,6 +130,7 @@ function WorkCard({ work, index, previewing = false, onPreview }) {
       <img className="work-card-poster" src={image(src)} alt={title} loading="lazy" />
       {instagram && playing && <iframe key={embedAttempt} src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen onLoad={() => setEmbedStatus('ready')} onError={() => setEmbedStatus('error')} />}
       {instagram && playing && embedStatus !== 'ready' && <div className={`work-card-embed-status is-${embedStatus}`} aria-live="polite">{embedStatus === 'loading' ? <span>carregando vídeo</span> : <><span>o instagram não respondeu</span><button type="button" onClick={retryEmbed}>tentar de novo</button></>}</div>}
+      {instagram && playing && <button className="work-card-close" type="button" onClick={closeEmbed} aria-label={`fechar vídeo ${title}`}>fechar</button>}
       {instagram && !playing && <button className="work-card-action" type="button" onClick={startEmbed} aria-label={`reproduzir ${title}`}>play</button>}
       {!instagram && <button className="work-card-action" type="button" onClick={onPreview} aria-label={`ampliar ${title}`}>ver</button>}
     </div>
