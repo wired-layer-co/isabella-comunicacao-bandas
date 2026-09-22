@@ -16,7 +16,7 @@ const services = [
 
 const workGroups = [
   { id: 'fotografia', title: 'fotografia', intro: 'show da Cysterna. cobertura de show.', background: 'show-hero.webp', works: [['show-01.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-02.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-03.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-04.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-05.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-06.webp', 'Cysterna', 'cobertura de show', photoDriveUrl]] },
-  { id: 'video', title: 'captação e edição de vídeo', intro: 'reels e vídeos para lançamento e divulgação de shows.', background: 'video-reel-DcRoU84BxO2.webp', works: [['video-reel-DcRoU84BxO2.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/'], ['video-reel-DanYMZZuH8V.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/'], ['video-reel-DYn16xdO8mv.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/'], ['video-reel-DWUcUc6gT3Z.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/'], ['video-reel-DV3ZrV8Dskl.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/'], ['video-reel-DVErpd1Afk6.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/']] },
+  { id: 'video', title: 'captação e edição de vídeo', intro: 'reels e vídeos para lançamento e divulgação de shows.', background: 'video-reel-DcRoU84BxO2.webp', works: [['video-reel-DcRoU84BxO2.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/', '16 / 9'], ['video-reel-DanYMZZuH8V.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/', '16 / 9'], ['video-reel-DYn16xdO8mv.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/', '9 / 16'], ['video-reel-DWUcUc6gT3Z.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/', '9 / 16'], ['video-reel-DV3ZrV8Dskl.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/', '9 / 16'], ['video-reel-DVErpd1Afk6.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/', '4 / 3']] },
   { id: 'design', title: 'design e artes visuais', intro: 'capas, zines, peças impressas e movimento para a identidade sair do som e ocupar o mundo.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster Hayley Williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-2.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-3.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-4.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ode.webp', 'zine Ode to the Mets', 'zine', designDriveUrl], ['video-cover-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/'], ['video-cover-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/']] },
 ]
 
@@ -65,14 +65,14 @@ function ImageLightbox({ src, title, onClose }) {
 }
 
 function WorkCard({ work, index }) {
-  const [src, title, kind, href] = work
+  const [src, title, kind, href, aspect = '16 / 9'] = work
   const instagram = href.includes('instagram.com')
   const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
   const type = href.includes('/p/') ? 'p' : 'reel'
   const [playing, setPlaying] = useState(false)
   const [previewing, setPreviewing] = useState(false)
 
-  return <article className={`work-card${playing ? ' is-playing' : ''}${previewing ? ' is-previewing' : ''}`}>
+  return <article className={`work-card${playing ? ' is-playing' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
     <div className="work-card-media">
       {playing ? <iframe src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no Instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <img src={image(src)} alt={title} loading="lazy" />}
       {instagram && !playing && <button className="work-card-action" type="button" onClick={() => setPlaying(true)} aria-label={`Reproduzir ${title}`}>play</button>}
