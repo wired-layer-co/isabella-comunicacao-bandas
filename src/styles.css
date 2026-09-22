@@ -100,13 +100,19 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 .work-group-panel { color:var(--paper); background:rgba(21,20,19,.94); }
 .work-group header>span { color:var(--muted-paper); }
 .work-card { color:var(--paper); transform-origin:center; }
-.work-card-media { border:3px solid var(--red-light); background:var(--ink); }
+.work-card { position:relative; isolation:isolate; }
+.work-card::before { position:absolute; z-index:0; inset:-7px 8px 9px -7px; background:var(--red-light); clip-path:polygon(2% 5%,98% 0,100% 95%,4% 100%); content:''; pointer-events:none; transform:rotate(-1.2deg); transition:inset 360ms cubic-bezier(.16,1,.3,1),transform 360ms cubic-bezier(.16,1,.3,1); }
+.work-card:nth-child(3n + 2)::before { inset:-8px -6px 7px 7px; transform:rotate(1.2deg); }
+.work-card:nth-child(3n)::before { inset:-5px 5px 10px -8px; transform:rotate(-.7deg); }
+.work-card-media,.work-card-copy { position:relative; z-index:1; }
+.work-card-media { border:3px solid var(--red-light); background:var(--ink); clip-path:polygon(1% 3%,99% 0,100% 97%,2% 100%); }
 .work-card-media img { filter:grayscale(.82) contrast(1.22) brightness(.96); }
 .work-card:hover img { filter:grayscale(.08) contrast(1.1) brightness(1.02); }
 .work-card:nth-child(3n + 1) { transform:rotate(-1.7deg); }
 .work-card:nth-child(3n + 2) { transform:rotate(1.25deg); }
 .work-card:nth-child(3n) { transform:rotate(-.65deg); }
 .work-card:hover { transform:translateY(-10px) rotate(0deg); }
+.work-card:hover::before { inset:-11px 11px 13px -11px; transform:rotate(-.3deg); }
 .work-card.is-previewing { transform:none !important; }
 .work-card-copy { position:relative; gap:4px 10px; padding:11px 4px 0; }
 .work-card-copy strong { font-family:'Bodoni Moda Variable',Georgia,serif; font-size:clamp(1rem,1.5vw,1.45rem); font-variation-settings:'opsz' 36,'wght' 640; letter-spacing:-.035em; line-height:.95; text-transform:uppercase; }
