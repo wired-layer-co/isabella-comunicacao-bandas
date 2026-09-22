@@ -89,12 +89,25 @@ function WorkCard({ work, index }) {
   const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
   const type = href.includes('/p/') ? 'p' : 'reel'
   const [playing, setPlaying] = useState(false)
+  const [embedStatus, setEmbedStatus] = useState('idle')
+  const [embedAttempt, setEmbedAttempt] = useState(0)
   const [previewing, setPreviewing] = useState(false)
 
-  return <article className={`work-card${playing ? ' is-playing' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
+  useEffect(() => {
+    if (!playing || embedStatus !== 'loading') return undefined
+    const timeout = window.setTimeout(() => setEmbedStatus('error'), 9000)
+    return () => window.clearTimeout(timeout)
+  }, [playing, embedStatus, embedAttempt])
+
+  const startEmbed = () => { setPlaying(true); setEmbedStatus('loading') }
+  const retryEmbed = () => { setEmbedStatus('loading'); setEmbedAttempt((attempt) => attempt + 1) }
+
+  return <article className={`work-card${playing ? ' is-playing' : ''}${embedStatus === 'ready' ? ' is-embed-ready' : ''}${embedStatus === 'error' ? ' is-embed-error' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
     <div className="work-card-media">
-      {playing ? <iframe src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <img src={image(src)} alt={title} loading="lazy" />}
-      {instagram && !playing && <button className="work-card-action" type="button" onClick={() => setPlaying(true)} aria-label={`reproduzir ${title}`}>play</button>}
+      <img className="work-card-poster" src={image(src)} alt={title} loading="lazy" />
+      {instagram && playing && <iframe key={embedAttempt} src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen onLoad={() => setEmbedStatus('ready')} onError={() => setEmbedStatus('error')} />}
+      {instagram && playing && embedStatus !== 'ready' && <div className={`work-card-embed-status is-${embedStatus}`} aria-live="polite">{embedStatus === 'loading' ? <span>carregando vídeo</span> : <><span>o instagram não respondeu</span><button type="button" onClick={retryEmbed}>tentar de novo</button></>}</div>}
+      {instagram && !playing && <button className="work-card-action" type="button" onClick={startEmbed} aria-label={`reproduzir ${title}`}>play</button>}
       {!instagram && <button className="work-card-action" type="button" onClick={() => setPreviewing(true)} aria-label={`ampliar ${title}`}>ver</button>}
     </div>
     <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>

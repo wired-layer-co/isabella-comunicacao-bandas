@@ -10,7 +10,7 @@ colors:
   oliva-arquivo: "#6a621c"
 typography:
   display:
-    fontFamily: "Bodoni Moda Variable, Georgia, serif"
+    fontFamily: "Grenze Gotisch, Bodoni Moda Variable, Georgia, serif"
     fontSize: "clamp(3.6rem, 7vw, 6rem)"
     fontWeight: 640
     lineHeight: 0.86
@@ -102,20 +102,20 @@ A paleta é quente, impressa e musical: o contraste parece vir de luz de palco s
 
 ## Typography
 
-**Display Font:** Bodoni Moda Variable (com Georgia como fallback)
+**Display Font:** Grenze Gotisch para os títulos de maior impacto, com Bodoni Moda Variable e Georgia como fallback.
 
 **Body Font:** Archivo Variable (com Arial como fallback)
 
-**Character:** Bodoni entrega drama editorial e presença de cartaz; Archivo mantém navegação, legendas e textos operacionais objetivos.
+**Character:** Grenze Gotisch entrega o drama neo-gótico de cartaz nos títulos e nos nomes de trabalhos; Bodoni sustenta os acentos editoriais; Archivo mantém navegação, legendas e textos operacionais objetivos.
 
 ### Hierarchy
 
 - **Display** (640, fluido, 0.79–0.86): hero, títulos de seção e cortina de transição.
 - **Headline** (640, fluido): títulos de cards e frases comerciais de alto impacto.
 - **Body** (400, fluido, 1.55–1.62): textos de apresentação, limitados a aproximadamente 50–62 caracteres por linha.
-- **Label** (740, 0.64–0.72rem, tracking amplo, caixa alta): navegação, filtros, metadados e botões.
+- **Label** (740, 0.64–0.72rem, tracking contido, minúsculas): navegação, filtros, metadados e botões.
 
-**The Two Voices Rule.** Bodoni fala emoção e escala; Archivo organiza ação e informação. Não inverter os papéis.
+**The Three Voices Rule.** Grenze Gotisch conduz os grandes títulos e nomes de trabalhos; Bodoni fala nos acentos editoriais; Archivo organiza ação e informação. Não inverter os papéis.
 
 ## Layout
 
