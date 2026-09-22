@@ -171,3 +171,19 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .group-design .work-card { color:var(--ink); }
   .social-panel { padding-block:62px; }
 }
+
+/* sistema de cantos: superfícies suaves, controles arredondados */
+:root { --radius:16px; --radius-large:24px; }
+.skip-link,.button-link,.lightbox-close { border-radius:999px; }
+.hero-visual img,.hero-paper,.about-art,.about-photo,.contact-image img { border-radius:var(--radius-large); }
+.collage-note,.service-card,.service-art-stack img,.planning-stack span { border-radius:var(--radius); }
+.work-group-panel,.social-panel { border-radius:var(--radius-large); }
+.work-card::before { border-radius:var(--radius); clip-path:none; }
+.work-card-media { border-radius:var(--radius); clip-path:none; }
+.work-card-media iframe { border-radius:calc(var(--radius) - 3px); }
+.lightbox-image,.image-lightbox img { border-radius:var(--radius); }
+.lightbox-pages button { border-radius:999px; }
+
+@media (max-width:760px) {
+  .work-group-panel,.social-panel { border-radius:var(--radius-large) var(--radius-large) 0 0; }
+}
