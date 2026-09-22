@@ -1,8 +1,12 @@
-# Fontes das imagens
+# Fontes dos arquivos visuais
 
-- `show-*.webp`: derivados das fotografias fornecidas pela cliente em `FOTOGRAFIA/`, redimensionados e convertidos para WebP.
-- `design-*.webp`: derivados dos trabalhos fornecidos pela cliente em `DESIGN E ARTES VISUAIS/`, redimensionados e convertidos para WebP.
-- `video-cover-*.webp`: capas reais dos três primeiros reels fornecidos no briefing, extraídas dos embeds oficiais do Instagram em 20/09/2026 e convertidas para WebP.
-- `src/assets/paper-grain.png`: textura procedural monocromática gerada localmente com ImageMagick para simular a granulação impressa presente nas referências aprovadas.
+Todos os arquivos desta pasta são derivados do material fornecido pela cliente no próprio repositório.
 
-Os vídeos e animações não são copiados: são exibidos por embeds oficiais do Instagram a partir dos links fornecidos no briefing.
+- `show-hero.webp` e `show-01.webp` a `show-06.webp`: convertidos das fotografias em `FOTOGRAFIA/`.
+- `design-hayley.webp`, `design-ode.webp` e `design-ego-1.webp` a `design-ego-4.webp`: convertidos das artes em `DESIGN E ARTES VISUAIS/`.
+- `video-cover-1.webp` a `video-cover-3.webp`: capas já presentes no build anterior em `dist/images/`.
+- `isabella-portrait.webp`: recorte otimizado do retrato principal já fornecido pela cliente no projeto irmão `portifolio atriz/site/public/images/isabella-retrato-principal.webp`.
+
+Nenhuma imagem foi gerada por inteligência artificial.
+
+Os arquivos `.webp.json` preservam essa procedência como metadado lateral; a textura PNG contém a mesma informação nos próprios metadados.

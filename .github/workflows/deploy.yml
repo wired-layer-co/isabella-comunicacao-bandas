@@ -16,29 +16,35 @@ concurrency:
 
 jobs:
   build:
-    name: Lint e build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - name: Instalar dependências
         run: npm ci --no-audit --no-fund
-      - name: Lint
+
+      - name: Validar código
         run: npm run lint
-      - name: Configurar Pages
-        uses: actions/configure-pages@v5
-      - name: Build
+
+      - name: Gerar site
         run: npm run build
-      - name: Empacotar site
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Preparar artefato
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
-    name: Publicar
     needs: build
     environment:
       name: github-pages

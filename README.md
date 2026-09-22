@@ -1,6 +1,6 @@
-# Isabella Monteiro | Comunicação para Bandas
+# Isabella Monteiro | Comunicação para bandas
 
-Site de apresentação dos serviços de comunicação, fotografia, vídeo, design e redes sociais para bandas.
+Landing page e portfólio desenvolvidos em React e Vite para publicação estática no GitHub Pages.
 
 ## Desenvolvimento
 
@@ -9,17 +9,11 @@ npm install
 npm run dev
 ```
 
-O projeto usa base pública `/socialmedia/`. Em produção, o GitHub Pages serve a origem e uma rota isolada do Cloudflare publica o site em:
-
-`https://isamonteiro.com.br/socialmedia/`
-
-O portfólio de atriz na raiz do domínio permanece independente.
-
-## Verificações
+## Validação
 
 ```bash
 npm run lint
 npm run build
 ```
 
-As fotografias e artes fornecidas pela cliente estão documentadas em `public/images/SOURCES.md`. Os vídeos são embeds oficiais do Instagram.
+O `vite.config.js` usa caminhos relativos, portanto o conteúdo de `dist` funciona tanto na raiz quanto em um subdiretório do GitHub Pages.

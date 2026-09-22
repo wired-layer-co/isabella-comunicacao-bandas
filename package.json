@@ -1,5 +1,5 @@
 {
-  "name": "isabella-monteiro-social-media",
+  "name": "isabella-monteiro-comunicacao-de-bandas",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -10,18 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/archivo": "latest",
-    "@fontsource-variable/bodoni-moda": "latest",
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@fontsource-variable/archivo": "^5.2.8",
+    "@fontsource-variable/bodoni-moda": "^5.2.8",
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^7.1.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@eslint/js": "latest",
-    "eslint": "latest",
-    "eslint-plugin-react-hooks": "latest",
-    "eslint-plugin-react-refresh": "latest",
-    "globals": "latest"
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0"
   }
 }

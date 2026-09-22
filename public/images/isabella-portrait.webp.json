@@ -1,0 +1,7 @@
+{
+  "asset": "isabella-portrait.webp",
+  "source": "../../../portifolio atriz/site/public/images/isabella-retrato-principal.webp",
+  "owner": "cliente",
+  "transform": "crop central 1100x1400 e compressão WebP",
+  "generated_by_ai": false
+}

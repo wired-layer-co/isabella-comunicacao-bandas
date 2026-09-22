@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-React com Vite, publicado como site estático com deploy automático no GitHub Pages e exposto em `https://isamonteiro.com.br/socialmedia/` sem substituir o portfólio existente na raiz.
+Delegado pelo cliente: React com Vite, publicado como site estático no GitHub Pages. A aplicação não depende de backend, usa caminhos compatíveis com subdiretórios e gera a entrega em `dist`.
 
 ## Users
 
@@ -29,10 +29,9 @@ O visitante chega por indicação ou redes sociais, reconhece rapidamente a espe
 ## Capabilities and Constraints
 
 - Site em português, responsivo e de página única.
-- A rota pública é `/socialmedia/` no domínio `isamonteiro.com.br`; nenhuma outra rota do domínio deve ser alterada.
+- Publicação estática no GitHub Pages.
 - CTA principal e final para WhatsApp no número `+55 41 9502-7607`.
 - Serviços: fotografia; captação e edição de vídeo; gerenciamento de redes sociais; design e artes visuais.
-- Vídeos e animações publicados no Instagram ou TikTok devem aparecer como embeds oficiais reproduzíveis dentro do site, não apenas como links ou imagens estáticas.
 - Trabalhos com créditos de banda ou ano ausentes devem ser apresentados sem inventar essas informações.
 - Nenhum depoimento, cliente, resultado, preço ou métrica pode ser fabricado.
 
@@ -40,25 +39,26 @@ O visitante chega por indicação ou redes sociais, reconhece rapidamente a espe
 
 - Nome público: Isabella Monteiro.
 - O texto fornecido no briefing é a fonte da voz e das afirmações do site.
-- A direção visual fornecida pela cliente é vinculante: referências Carmine Creative e Abyss Haus; paleta preta, off-white, vermelha e oliva documentada; composição editorial, tipografia contrastada, fotografia musical, textura impressa e cards de serviços empilhados/interativos.
-- O site deve comunicar ligação genuína com rock e com a cena independente, sem cair em estética genérica de agência ou SaaS.
+- As referências Carmine Creative e Abyss Haus são vinculantes.
+- A paleta preta, off-white, vermelha e oliva documentada pela cliente deve ser preservada.
+- A composição deve ser editorial, musical e tátil, com fotografia de palco, textura impressa e comportamento de portfólio próximo ao vídeo de referência.
+- O resultado não pode parecer uma agência genérica ou um produto SaaS.
 
 ## Evidence on Hand
 
-- Briefing de conteúdo e links em `SITE _ COMUNICAÇÃO DE BANDAS _ BRIEFING.md`.
+- Briefing em `SITE _ COMUNICAÇÃO DE BANDAS _ BRIEFING.md`.
 - Sete fotografias reais de show em `FOTOGRAFIA/`.
 - Pôster, zine e quatro páginas de revista em `DESIGN E ARTES VISUAIS/`.
-- Links para oito trabalhos de vídeo e animação no Instagram.
-- Referências locais de UI em `refs ui/` e duas referências de sites verificadas com Playwright.
-- Não há foto pessoal de Isabella, logotipo, depoimentos, preços nem créditos completos de banda e ano.
+- Referências locais de UI em `refs ui/`.
+- Não há foto pessoal de Isabella, logotipo, depoimentos, preços ou créditos completos de banda e ano.
 
 ## Product Principles
 
-- A linguagem visual deve provar familiaridade com a cena musical antes de explicar o serviço.
+- A linguagem visual prova familiaridade com a cena musical antes de explicar o serviço.
 - Trabalhos reais têm prioridade sobre promessas genéricas.
-- A oferta e o caminho para conversar precisam ser entendidos em poucos segundos.
-- A banda preserva sua voz; Isabella assume o trabalho de transformá-la em comunicação consistente.
-- Informações ausentes permanecem ausentes, nunca são preenchidas com exemplos fictícios.
+- A oferta e o caminho para conversar devem ser entendidos em poucos segundos.
+- A banda preserva sua voz; Isabella transforma essa voz em comunicação consistente.
+- Informações ausentes permanecem ausentes.
 
 ## Accessibility & Inclusion
 

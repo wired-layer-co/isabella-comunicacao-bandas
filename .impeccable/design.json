@@ -1,108 +1,87 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-20T04:05:00Z",
-  "title": "Design System: Isabella Monteiro | Comunicação para Bandas",
+  "generatedAt": "2026-09-21T13:05:00-03:00",
+  "title": "Design System: Isabella Monteiro — Comunicação para Bandas",
   "extensions": {
     "colorMeta": {
-      "palco-preto": {
-        "role": "neutral",
-        "displayName": "Palco Preto",
-        "canonical": "#151413",
-        "tonalRamp": ["#151413", "#2c2a28", "#45423f", "#615d59", "#817c76", "#a49e96", "#cbc4ba", "#f3ece0"]
-      },
-      "papel-palha": {
-        "role": "neutral",
-        "displayName": "Papel Palha",
-        "canonical": "#f9ebac",
-        "tonalRamp": ["#29240f", "#4d431c", "#726329", "#998638", "#bfaa53", "#d9c777", "#ebdd99", "#fff4c7"]
-      },
-      "vermelho-cartaz": {
-        "role": "primary",
-        "displayName": "Vermelho Cartaz",
-        "canonical": "#912925",
-        "tonalRamp": ["#2b0d0c", "#4a1513", "#691d1a", "#882622", "#a93a34", "#c65f58", "#e3948e", "#f7d1cd"]
-      },
-      "oliva-arquivo": {
-        "role": "secondary",
-        "displayName": "Oliva Arquivo",
-        "canonical": "#6a621c",
-        "tonalRamp": ["#211f08", "#38340e", "#504a15", "#68611c", "#827a2a", "#a29a4b", "#c5bf78", "#ebe7b1"]
-      },
-      "papel-claro": {
-        "role": "neutral",
-        "displayName": "Papel Claro",
-        "canonical": "#fffdf0",
-        "tonalRamp": ["#29281f", "#4c4a3b", "#716e59", "#989478", "#bdb999", "#d9d5b6", "#eeeacb", "#fffdf0"]
-      }
+      "palco-preto": { "role": "neutral", "displayName": "Palco Preto", "canonical": "#151413", "tonalRamp": ["#080706", "#151413", "#2c2a28", "#4a4743", "#6f6b66", "#9b9690", "#cbc7c1", "#f3f1ed"] },
+      "papel-palha": { "role": "neutral", "displayName": "Papel Palha", "canonical": "#f9ebac", "tonalRamp": ["#29230c", "#4b421a", "#706529", "#998c3e", "#c2b55c", "#e0d37d", "#f9ebac", "#fff9dc"] },
+      "papel-claro": { "role": "neutral", "displayName": "Papel Claro", "canonical": "#fff9dc", "tonalRamp": ["#2b281e", "#504a37", "#756e54", "#9d9473", "#c4bb94", "#e4dcb8", "#f5edcc", "#fff9dc"] },
+      "vermelho-cartaz": { "role": "primary", "displayName": "Vermelho Cartaz", "canonical": "#912925", "tonalRamp": ["#2b0808", "#4c1010", "#6d1b19", "#912925", "#b53f38", "#d5655c", "#ed9b92", "#f8d7d2"] },
+      "vermelho-luz": { "role": "primary", "displayName": "Vermelho Luz", "canonical": "#c43f39", "tonalRamp": ["#310a09", "#581412", "#7f211e", "#a6302c", "#c43f39", "#df6a62", "#f2a39d", "#fbd8d5"] },
+      "oliva-arquivo": { "role": "secondary", "displayName": "Oliva Arquivo", "canonical": "#6a621c", "tonalRamp": ["#1d1a05", "#353009", "#4e480f", "#6a621c", "#89802e", "#aca34d", "#d1c982", "#eee9c1"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Manifesto", "purpose": "Primeiro quadro e fechamentos monumentais." },
-      "headline": { "displayName": "Seção editorial", "purpose": "Títulos de seções em escala de cartaz." },
-      "title": { "displayName": "Título de trabalho", "purpose": "Serviços e agrupamentos de portfólio." },
-      "body": { "displayName": "Leitura", "purpose": "Biografia, serviços e explicações factuais." },
-      "label": { "displayName": "Ficha técnica", "purpose": "Navegação, ações e metadados." }
+      "display": { "displayName": "Display Editorial", "purpose": "Hero, títulos de seção e transições." },
+      "body": { "displayName": "Corpo Operacional", "purpose": "Leitura e explicação de serviços." },
+      "label": { "displayName": "Rótulo de Produção", "purpose": "Navegação, filtros, botões e metadados." }
     },
     "shadows": [
-      { "name": "pilha-fotografica", "value": "0 18px 34px rgba(21, 20, 19, 0.24)", "purpose": "Separar recortes fotográficos sobrepostos dentro dos cards." }
+      { "name": "papel-empilhado", "value": "0 24px 40px rgba(21, 20, 19, 0.28)", "purpose": "Fotografias e folhas sobrepostas." },
+      { "name": "card-editorial", "value": "0 18px 40px rgba(21, 20, 19, 0.09)", "purpose": "Cards de projeto sobre papel claro." }
     ],
     "motion": [
-      { "name": "espalhar-pilha", "value": "360ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Espalhar camadas fotográficas em hover e seleção." },
-      { "name": "estado-rapido", "value": "180ms ease", "purpose": "Trocas de cor em links e botões." }
+      { "name": "entrada-editorial", "value": "560ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Entrada escalonada de trabalhos." },
+      { "name": "mascara-editorial", "value": "850ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Títulos e imagens principais revelados por recorte." },
+      { "name": "folha-de-transicao", "value": "360ms cubic-bezier(0.76, 0, 0.24, 1)", "purpose": "Troca de categoria do portfólio." },
+      { "name": "estado-rapido", "value": "220ms ease", "purpose": "Hover, foco e inversões de cor." }
     ],
     "breakpoints": [
-      { "name": "compacto", "value": "760px" },
-      { "name": "intermediario", "value": "1080px" }
+      { "name": "mobile", "value": "760px" },
+      { "name": "compact-desktop", "value": "1120px" }
     ]
   },
   "components": [
     {
-      "name": "Botão WhatsApp",
+      "name": "Botão Contorno",
       "kind": "button",
-      "refersTo": "whatsapp-button",
-      "description": "Ação principal reta e contrastada para iniciar a conversa.",
-      "html": "<a class=\"ds-whatsapp\" href=\"#\">VAMOS CONVERSAR <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\"/></svg></a>",
-      "css": ".ds-whatsapp{display:inline-flex;min-height:48px;align-items:center;gap:20px;padding:0 24px;color:#f9ebac;background:#912925;font:700 .74rem/1.2 Arial,sans-serif;letter-spacing:.1em;text-decoration:none}.ds-whatsapp svg{width:21px;fill:none;stroke:currentColor;stroke-width:1.8}.ds-whatsapp:hover{color:#151413;background:#f9ebac}.ds-whatsapp:focus-visible{outline:3px solid #fff36b;outline-offset:5px}"
+      "refersTo": "button-outline",
+      "description": "Ação secundária sobre fundo escuro.",
+      "html": "<button class=\"ds-button-outline\">Falar sobre a sua banda <span>→</span></button>",
+      "css": ".ds-button-outline{height:50px;padding:0 20px;border:1px solid #f9ebac;border-radius:0;background:transparent;color:#f9ebac;font:740 .72rem/1.4 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:background .22s,color .22s}.ds-button-outline:hover{background:#f9ebac;color:#151413}.ds-button-outline:focus-visible{outline:3px solid #fff9dc;outline-offset:5px}"
     },
     {
-      "name": "Card de Serviço",
+      "name": "Botão Principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Chamada principal para contato.",
+      "html": "<button class=\"ds-button-primary\">Abrir conversa no WhatsApp <span>→</span></button>",
+      "css": ".ds-button-primary{height:62px;padding:0 28px;border:1px solid #912925;border-radius:0;background:#912925;color:#f9ebac;font:740 .72rem/1.4 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;transition:background .22s,color .22s}.ds-button-primary:hover{background:#f9ebac;color:#151413}.ds-button-primary:focus-visible{outline:3px solid #fff9dc;outline-offset:5px}"
+    },
+    {
+      "name": "Filtro de Portfólio",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Filtro compacto com contagem e estado ativo.",
+      "html": "<button class=\"ds-filter\">Fotografia <b>6</b></button>",
+      "css": ".ds-filter{display:inline-flex;align-items:center;gap:9px;padding:8px 11px;border:0;border-radius:0;background:#151413;color:#fff9dc;font:710 .72rem/1.4 Arial,sans-serif}.ds-filter b{padding:2px 5px;background:#f9ebac;color:#151413}.ds-filter:hover,.ds-filter:focus-visible{background:#912925}.ds-filter:focus-visible{outline:3px solid #151413;outline-offset:3px}"
+    },
+    {
+      "name": "Card de Projeto",
       "kind": "card",
-      "refersTo": "service-card",
-      "description": "Folha editorial com pilha física de trabalhos e ação explícita.",
-      "html": "<article class=\"ds-service\"><div class=\"ds-stack\"><span></span><span></span><span></span></div><div class=\"ds-copy\"><small>01</small><h3>Fotografia</h3><p>Ensaios promocionais, cobertura de shows e backstage.</p><b>VER TRABALHOS →</b></div></article>",
-      "css": ".ds-service{width:360px;color:#151413;background:#f9ebac}.ds-stack{position:relative;height:230px;background:#6a621c;overflow:hidden}.ds-stack span{position:absolute;top:35px;left:95px;width:170px;height:160px;border:5px solid #f9ebac;background:#151413;box-shadow:0 18px 34px rgba(21,20,19,.24)}.ds-stack span:nth-child(1){transform:translateX(-45px) rotate(-8deg)}.ds-stack span:nth-child(2){transform:translateX(42px) rotate(7deg)}.ds-stack span:nth-child(3){background:#912925}.ds-copy{padding:24px}.ds-copy h3{margin:4px 0 10px;font:650 38px/.95 Georgia,serif;letter-spacing:-.04em}.ds-copy p{font:14px/1.5 Arial,sans-serif}.ds-copy b,.ds-copy small{font:700 10px/1 Arial,sans-serif;letter-spacing:.1em}"
+      "refersTo": "project-card",
+      "description": "Mídia dominante com ficha editorial inferior.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-copy\"><span><strong>Bateria em movimento</strong><small>Fotografia de show</small></span><b>01</b></div></article>",
+      "css": ".ds-card{overflow:hidden;border:1px solid rgba(21,20,19,.2);border-radius:28px;background:#151413;color:#f9ebac;box-shadow:0 18px 40px rgba(21,20,19,.09)}.ds-card-media{aspect-ratio:4/5;background:linear-gradient(145deg,#912925,#151413 68%)}.ds-card-copy{display:flex;min-height:132px;align-items:center;justify-content:space-between;gap:22px;padding:24px 25px 26px}.ds-card-copy span{display:flex;flex-direction:column;gap:9px}.ds-card-copy strong{font:650 1.6rem/.98 Georgia,serif}.ds-card-copy small{font:740 .64rem/1.4 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;opacity:.72}.ds-card-copy b{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;background:#f9ebac;color:#151413;font:740 .64rem Arial,sans-serif}"
     },
     {
-      "name": "Navegação Editorial",
-      "kind": "nav",
-      "description": "Assinatura serifada e links técnicos sobre uma linha fina.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Isabella Monteiro</a><a href=\"#\">QUEM SOU</a><a href=\"#\">SERVIÇOS</a><a href=\"#\">CONTATO</a></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;gap:28px;padding:18px 20px;color:#f9ebac;background:#151413;border-bottom:1px solid rgba(249,235,172,.42)}.ds-nav a{color:inherit;font:700 10px/1 Arial,sans-serif;letter-spacing:.1em;text-decoration:none}.ds-nav .ds-brand{margin-right:auto;font:italic 650 18px/1 Georgia,serif;letter-spacing:-.02em;text-transform:none}.ds-nav a:hover{text-decoration:underline;text-underline-offset:7px}.ds-nav a:focus-visible{outline:3px solid #fff36b;outline-offset:5px}"
+      "name": "Linha de Serviço",
+      "kind": "custom",
+      "description": "Item editorial selecionável com inversão de cor.",
+      "html": "<button class=\"ds-service\"><small>01</small><strong>Fotografia</strong><span>Ensaios, shows e backstage.</span></button>",
+      "css": ".ds-service{display:grid;width:100%;grid-template-columns:34px 1fr;gap:12px 18px;align-items:center;padding:24px 0;border:0;border-bottom:1px solid rgba(249,235,172,.3);border-radius:0;background:#912925;color:#f9ebac;text-align:left;transition:background .24s,color .24s}.ds-service strong{font:650 2rem/.96 Georgia,serif}.ds-service span{grid-column:2;font:400 .84rem/1.48 Arial,sans-serif}.ds-service:hover,.ds-service:focus-visible{background:#f9ebac;color:#151413}.ds-service:focus-visible{outline:3px solid #fff9dc;outline-offset:4px}"
     }
   ],
   "narrative": {
     "northStar": "Press Kit Vivo da Cena Independente",
-    "overview": "O sistema transforma repertório, serviço e contato em uma publicação musical montada à mão. A escala editorial e o contraste preto/palha vêm das referências aprovadas; o vermelho, a textura e a energia fotográfica aproximam a interface de cartazes, zines e arquivos de turnê, nunca de um site SaaS ou de uma agência corporativa.",
-    "keyCharacteristics": [
-      "Fotografia musical real em escala dominante.",
-      "Contraste de papel palha e palco preto, com campos inteiros de vermelho ou oliva.",
-      "Composição editorial assimétrica, mas leitura e ações inequívocas.",
-      "Textura impressa discreta e recortes fotográficos físicos.",
-      "Cantos retos, linhas finas e controles tipográficos."
-    ],
+    "overview": "O sistema combina a urgência de um cartaz de show com a clareza de um portfólio profissional. A energia vem de campos inteiros de cor, escala tipográfica e sobreposição física; fotografias e trabalhos reais são sempre protagonistas.",
+    "keyCharacteristics": ["Tipografia editorial grande, de alto contraste.", "Preto de palco, papel palha, vermelho de cartaz e oliva de arquivo.", "Fotografia de show e peças reais em composições táteis.", "Grade alternada, transições curtas e mobile estritamente empilhado."],
     "rules": [
-      { "name": "The Whole Sheet Rule", "body": "Vermelho e oliva ocupam áreas inteiras como folhas impressas; não viram pequenos confetes cromáticos.", "section": "colors" },
-      { "name": "The Two Voices Rule", "body": "Bodoni fala em manifestos, títulos e frases editoriais; Archivo carrega toda informação operacional.", "section": "typography" },
-      { "name": "The Tabletop Rule", "body": "Sombras pertencem somente a objetos que poderiam estar fisicamente sobre uma mesa; seções e botões permanecem planos.", "section": "elevation" }
+      { "name": "The Whole Sheet Rule", "body": "Vermelho e oliva aparecem como campos materiais completos ou estados claros, não como pequenos salpicos decorativos.", "section": "colors" },
+      { "name": "The Two Voices Rule", "body": "Bodoni fala emoção e escala; Archivo organiza ação e informação. Não inverter os papéis.", "section": "typography" },
+      { "name": "The Tabletop Rule", "body": "Sombra só existe quando o elemento poderia ser colocado fisicamente sobre uma mesa.", "section": "elevation" }
     ],
-    "dos": [
-      "Do use fotografias e trabalhos reais como prova principal.",
-      "Do aplique vermelho e oliva como folhas inteiras e preserve o contraste preto/palha.",
-      "Do construa interação como manipulação de impressos: espalhar, abrir, virar e revelar."
-    ],
-    "donts": [
-      "Don't introduza gradientes, vidro, brilho neon ou cartões arredondados de produto digital.",
-      "Don't use ícones genéricos para representar serviços quando o trabalho real pode ocupar o espaço.",
-      "Don't invente créditos, bandas, anos, clientes, métricas ou depoimentos."
-    ]
+    "dos": ["Do usar fotografias e trabalhos reais como núcleo de qualquer composição.", "Do manter hierarquia dramática com poucos tamanhos tipográficos claramente distintos.", "Do preservar o empilhamento em uma coluna e áreas de toque confortáveis abaixo de 760px.", "Do respeitar prefers-reduced-motion em transições e entradas."],
+    "donts": ["Don't suavizar todas as superfícies com o mesmo raio; cards, folhas e controles têm papéis diferentes.", "Don't adicionar carrosséis, selos ou ornamentos genéricos sem função editorial.", "Don't usar mais de uma faixa contínua em movimento na mesma página.", "Don't substituir contraste e composição por efeitos pesados ou animações longas."]
   }
 }

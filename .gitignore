@@ -1,8 +1,7 @@
-node_modules/
-dist/
+node_modules
+dist
+.vite
 .DS_Store
-.playwright-mcp/
-.impeccable/review/
-.impeccable/hook.cache.json
-.impeccable/hook.pending.json
-.impeccable/config.local.json
+.impeccable/review
+.impeccable/build
+.impeccable/mocks

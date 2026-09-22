@@ -1,189 +1,195 @@
 ---
-name: Isabella Monteiro | Comunicação para Bandas
-description: Um press kit vivo da cena independente, impresso em tela.
+name: Isabella Monteiro — Comunicação para Bandas
+description: Um press kit vivo para a cena independente, com energia de palco e materialidade editorial.
 colors:
   palco-preto: "#151413"
   papel-palha: "#f9ebac"
+  papel-claro: "#fff9dc"
   vermelho-cartaz: "#912925"
+  vermelho-luz: "#c43f39"
   oliva-arquivo: "#6a621c"
-  papel-claro: "#fffdf0"
 typography:
   display:
     fontFamily: "Bodoni Moda Variable, Georgia, serif"
-    fontSize: "clamp(4.9rem, 9.4vw, 10rem)"
-    fontWeight: 610
-    lineHeight: 0.76
-    letterSpacing: "-0.04em"
-  headline:
-    fontFamily: "Bodoni Moda Variable, Georgia, serif"
-    fontSize: "clamp(5rem, 8.8vw, 9rem)"
-    fontWeight: 610
-    lineHeight: 0.8
-    letterSpacing: "-0.04em"
-  title:
-    fontFamily: "Bodoni Moda Variable, Georgia, serif"
-    fontSize: "clamp(2.1rem, 3.5vw, 4rem)"
-    fontWeight: 650
-    lineHeight: 0.95
+    fontSize: "clamp(3.6rem, 7vw, 6rem)"
+    fontWeight: 640
+    lineHeight: 0.86
     letterSpacing: "-0.04em"
   body:
     fontFamily: "Archivo Variable, Arial, sans-serif"
-    fontSize: "1rem"
+    fontSize: "clamp(1rem, 1.3vw, 1.18rem)"
     fontWeight: 400
-    lineHeight: 1.56
-    letterSpacing: "normal"
+    lineHeight: 1.55
   label:
     fontFamily: "Archivo Variable, Arial, sans-serif"
-    fontSize: "0.74rem"
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "0.1em"
+    fontSize: "0.72rem"
+    fontWeight: 740
+    lineHeight: 1.4
+    letterSpacing: "0.09em"
 rounded:
-  square: "0"
+  straight: "0"
+  card: "28px"
+  card-mobile: "22px"
+  pill: "999px"
 spacing:
-  gutter-mobile: "18px"
-  gutter-fluid: "clamp(20px, 4vw, 70px)"
-  section: "clamp(100px, 11vw, 170px)"
+  gutter: "clamp(20px, 4.4vw, 72px)"
+  section: "clamp(96px, 11vw, 172px)"
+  header: "72px"
+  header-mobile: "58px"
 components:
-  whatsapp-button:
+  button-outline:
+    backgroundColor: "transparent"
+    textColor: "{colors.papel-palha}"
+    rounded: "{rounded.straight}"
+    padding: "0 20px"
+    height: "50px"
+  button-primary:
     backgroundColor: "{colors.vermelho-cartaz}"
     textColor: "{colors.papel-palha}"
-    typography: "{typography.label}"
-    rounded: "{rounded.square}"
-    padding: "0 24px"
-    height: "48px"
-  service-card:
-    backgroundColor: "{colors.papel-palha}"
-    textColor: "{colors.palco-preto}"
-    rounded: "{rounded.square}"
-    padding: "0"
+    rounded: "{rounded.straight}"
+    padding: "0 28px"
+    height: "62px"
+  filter-chip:
+    backgroundColor: "{colors.palco-preto}"
+    textColor: "{colors.papel-claro}"
+    rounded: "{rounded.straight}"
+    padding: "8px 11px"
+  project-card:
+    backgroundColor: "{colors.palco-preto}"
+    textColor: "{colors.papel-palha}"
+    rounded: "{rounded.card}"
+    padding: "24px 25px 26px"
 ---
 
-# Design System: Isabella Monteiro | Comunicação para Bandas
+# Design System: Isabella Monteiro — Comunicação para Bandas
 
 ## Overview
 
 **Creative North Star: "Press Kit Vivo da Cena Independente"**
 
-O sistema transforma repertório, serviço e contato em uma publicação musical montada à mão. A escala editorial e o contraste preto/palha vêm das referências Carmine Creative e Abyss Haus; o vermelho, a textura e a energia fotográfica seguem a referência Raw Energy e a paleta aprovada pela cliente. A interface deve parecer próxima de cartazes, zines e arquivos de turnê, nunca de um site SaaS ou de uma agência corporativa.
+O sistema combina a urgência de um cartaz de show com a clareza de um portfólio profissional. A página deve parecer montada com fotografias, folhas impressas e títulos editoriais, sem perder legibilidade, velocidade ou confiança comercial.
 
-A fotografia em cor fornece a energia; as superfícies impressas organizam a leitura. Tipografia serifada monumental, sans expandida em rótulos, linhas finas e pilhas físicas de imagens sustentam a identidade em qualquer nova página.
+A energia vem de campos inteiros de cor, escala tipográfica e sobreposição física. Fotografias e trabalhos reais são sempre protagonistas; ornamento nunca substitui conteúdo.
 
 **Key Characteristics:**
 
-- Fotografia musical real em escala dominante.
-- Contraste de papel palha e palco preto, com campos inteiros de vermelho ou oliva.
-- Composição editorial assimétrica, mas leitura e ações inequívocas.
-- Textura impressa discreta e recortes fotográficos físicos.
-- Cantos retos, linhas finas e controles tipográficos.
+- Tipografia editorial grande, de alto contraste.
+- Preto de palco, papel palha, vermelho de cartaz e oliva de arquivo.
+- Fotografia de show e peças reais em composições táteis.
+- Grade alternada, transições curtas e mobile estritamente empilhado.
+- Movimento editorial com máscaras, folhas deslizantes e parallax contido.
 
 ## Colors
 
-A paleta tem caráter de material impresso: tinta escura, papel envelhecido e duas tintas de apoio densas.
+A paleta é quente, impressa e musical: o contraste parece vir de luz de palco sobre papel envelhecido.
 
 ### Primary
 
-- **Vermelho Cartaz:** superfície de serviços, chamadas editoriais e ação principal.
+- **Vermelho Cartaz:** campo de energia para serviços, estados ativos e chamadas decisivas.
+- **Vermelho Luz:** ênfase tipográfica pontual, nunca como fundo dominante concorrente.
 
 ### Secondary
 
-- **Oliva Arquivo:** fundo de colagens e fechamento, usado em campos amplos, não como acento disperso.
+- **Oliva Arquivo:** superfície de apoio para colagens, rodapé e pausas visuais.
 
 ### Neutral
 
-- **Palco Preto:** abertura, contato, texto forte e fundo de alto contraste.
-- **Papel Palha:** superfície de leitura, texto reverso e moldura fotográfica.
-- **Papel Claro:** realce de cartões ativos e áreas que precisam parecer folha nova.
+- **Palco Preto:** fundo principal, texto sobre papel e moldura de mídia.
+- **Papel Palha:** texto em fundos escuros e superfície editorial quente.
+- **Papel Claro:** área de portfólio e fundo de leitura prolongada.
 
-### Named Rules
-
-**The Whole Sheet Rule.** Vermelho e oliva ocupam áreas inteiras como folhas impressas; não viram pequenos confetes cromáticos.
-
-**The Gig Contrast Rule.** Texto factual mantém contraste alto e nunca é colocado diretamente sobre uma fotografia sem uma superfície sólida.
+**The Whole Sheet Rule.** Vermelho e oliva aparecem como campos materiais completos ou estados claros, não como pequenos salpicos decorativos.
 
 ## Typography
 
-**Display Font:** Bodoni Moda Variable (com Georgia como fallback)  
+**Display Font:** Bodoni Moda Variable (com Georgia como fallback)
+
 **Body Font:** Archivo Variable (com Arial como fallback)
 
-**Character:** Bodoni Moda fornece o contraste dramático de revista e cartaz; Archivo mantém serviços, navegação e textos profissionais precisos. O contraste entre as famílias substitui ornamento gratuito.
+**Character:** Bodoni entrega drama editorial e presença de cartaz; Archivo mantém navegação, legendas e textos operacionais objetivos.
 
 ### Hierarchy
 
-- **Display** (610, escala monumental fluida, line-height 0.76): manifesto do primeiro quadro e encerramentos.
-- **Headline** (610, escala editorial fluida, line-height 0.8): nomes de seções.
-- **Title** (650, escala fluida, line-height 0.95): serviços e agrupamentos de trabalhos.
-- **Body** (400, 1rem, line-height 1.56): textos de até cerca de 60ch.
-- **Label** (700, 0.74rem, tracking 0.1em, caixa alta): navegação, ações, créditos e metadados.
+- **Display** (640, fluido, 0.79–0.86): hero, títulos de seção e cortina de transição.
+- **Headline** (640, fluido): títulos de cards e frases comerciais de alto impacto.
+- **Body** (400, fluido, 1.55–1.62): textos de apresentação, limitados a aproximadamente 50–62 caracteres por linha.
+- **Label** (740, 0.64–0.72rem, tracking amplo, caixa alta): navegação, filtros, metadados e botões.
 
-### Named Rules
-
-**The Two Voices Rule.** Bodoni fala em manifestos, títulos e frases editoriais; Archivo carrega toda informação operacional.
-
-**The Poster Tightness Rule.** Displays usam entrelinha compacta e tracking até `-0.04em`; corpo de texto nunca herda essa compressão.
+**The Two Voices Rule.** Bodoni fala emoção e escala; Archivo organiza ação e informação. Não inverter os papéis.
 
 ## Layout
 
-O desktop usa grades assimétricas e sobreposições intencionais. O gutter é fluido entre 20px e 70px; seções principais usam de 100px a 170px de respiro vertical. Conteúdo longo alterna campos densos de fotografia com folhas calmas de leitura. Cards de serviço aparecem em duas colunas, deslocados verticalmente como fotografias sobre uma mesa.
+O layout usa gutter fluido, seções generosas e composição assimétrica. Hero e serviços combinam texto com mídia deslocada; o portfólio usa rail fixo no desktop e grade de dois cards alternados. Abaixo de 760px tudo vira uma coluna, o rail deixa de ser sticky e filtros passam a rolar horizontalmente. O menu mobile ocupa toda a altura útil abaixo do cabeçalho.
 
-Abaixo de 760px, a composição vira uma sequência vertical: navegação em tela cheia, hero em cartaz empilhado, colagens preservadas e cards em uma coluna. Embeds formam trilhos horizontais com `scroll-snap`; nenhuma parte da página gera overflow horizontal até 320px.
+O ritmo vertical principal é amplo. Espaçamentos menores existem dentro de cards e controles; entre blocos narrativos, preservar a pausa.
 
 ## Elevation & Depth
 
-O sistema é plano por padrão. Profundidade é reservada às pilhas fotográficas e vem de sobreposição, rotação, bordas de papel e uma sombra ambiente realista; superfícies de conteúdo não flutuam.
+O sistema é plano por padrão. Profundidade aparece quando um objeto deve parecer físico: fotografias empilhadas, folhas e cards de projeto. A sombra é baixa e difusa; campos de interface, filtros e botões permanecem sem elevação.
 
 ### Shadow Vocabulary
 
-- **Pilha Fotográfica** (`0 18px 34px rgba(21, 20, 19, 0.24)`): separa apenas as imagens sobrepostas dentro dos cards.
+- **Papel empilhado** (`0 24px 40px rgba(21, 20, 19, 0.28)`): fotos e folhas sobrepostas.
+- **Card editorial** (`0 18px 40px rgba(21, 20, 19, 0.09)`): separação discreta sobre o papel claro.
 
-### Named Rules
+**The Tabletop Rule.** Sombra só existe quando o elemento poderia ser colocado fisicamente sobre uma mesa.
 
-**The Tabletop Rule.** Sombras pertencem somente a objetos que poderiam estar fisicamente sobre uma mesa; seções e botões permanecem planos.
+## Motion
+
+O movimento traduz os padrões centrais das referências sem copiar sua composição: o hero permanece em cena por um curto trecho e desloca título e fotografia em velocidades diferentes; títulos entram por máscara; a troca de categoria é coberta por uma folha; colagens são distribuídas como cartões físicos; e a faixa contínua responde discretamente à velocidade de rolagem.
+
+- **Entrada editorial:** 700–1100ms, `cubic-bezier(0.16, 1, 0.3, 1)`, usada uma única vez na chegada de cada bloco.
+- **Mudança de estado:** 180–360ms para menu, filtros, serviço ativo e cortina de categoria.
+- **Loops:** somente a faixa de serviços, pausada fora da viewport ou com a página oculta.
+- **Reduced motion:** remove parallax, máscaras e duração perceptível sem ocultar conteúdo.
+
+**The One Gesture Rule.** Cada bloco deve ter um gesto dominante; nunca empilhar parallax, escala e rotação no mesmo elemento interativo.
 
 ## Shapes
 
-Superfícies, botões, embeds e imagens usam cantos retos. Linhas de 1px dividem conteúdo e bordas de papel de 5px a 7px enquadram fotografias. Rotações leves entre cerca de 1° e 8° pertencem a recortes físicos, nunca a texto corrido.
+Estrutura e controles usam cantos retos. Cards de portfólio adotam cantos editoriais amplos para seguir a referência de mídia + ficha, enquanto pequenos links de ação internos podem usar formato de pílula. Fotografias de colagem mantêm bordas retas e rotações leves.
 
 ## Components
 
 ### Buttons
 
-- **Shape:** retângulo reto sem raio.
-- **Primary:** Vermelho Cartaz com Papel Palha, rótulo Archivo em caixa alta e seta linear.
-- **Hover / Focus:** troca para Papel Palha com texto Palco Preto; foco amarelo vivo de 3px e offset de 5px.
+- **Shape:** retangular e reto; altura mínima de 50px.
+- **Primary:** vermelho com texto palha, usado no contato principal.
+- **Secondary / Ghost:** transparente com traço palha, invertendo no hover.
+- **Hover / Focus:** mudança sólida de cor em 180–220ms; foco visível de 3px.
+
+### Chips
+
+- **Style:** bloco preto compacto com contador em papel palha.
+- **State:** ativo em vermelho; no mobile a lista rola horizontalmente sem quebrar linha.
+
+### Cards / Containers
+
+- **Corner Style:** curvatura ampla nos projetos; cantos retos nas folhas sobrepostas.
+- **Background:** alternância entre palco preto e vermelho cartaz.
+- **Shadow Strategy:** card editorial discreto; mídia permanece dominante.
+- **Internal Padding:** 20–26px na ficha inferior.
 
 ### Navigation
 
-- **Desktop:** assinatura serifada à esquerda e rótulos compactos distribuídos à direita, sobre linha fina.
-- **Mobile:** botão textual abre uma folha Vermelho Cartaz em tela cheia; links viram títulos serifados grandes.
-- **State:** hover sublinha com offset amplo; foco usa o anel global.
+Cabeçalho fixo, compacto e translúcido no desktop. No mobile, o botão abre um painel vermelho de tela cheia com links Bodoni grandes, divisórias finas e rolagem vertical de segurança.
 
-### Service Cards
+### Service Row
 
-- **Corner Style:** completamente reto.
-- **Background:** Papel Palha, com Papel Claro no estado ativo.
-- **Media:** três imagens em pilha sobre campos Oliva, Preto ou neutro; borda de papel e fita translúcida.
-- **Interaction:** hover ou abertura espalha as camadas; seleção revela abaixo os trabalhos reais do serviço.
-- **Content:** número, título editorial, descrição factual e ação explícita; nunca ícone genérico.
-
-### Instagram Embeds
-
-Embeds oficiais preservam reprodução, autoria e controles da plataforma. No desktop usam grade de três colunas; no mobile formam trilho horizontal acessível. Não substituir por mockups estáticos.
+Lista editorial com número, nome e resumo. Hover, foco e seleção invertem para papel palha e deslocam o conteúdo horizontalmente sem animar dimensões de layout.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** use fotografias e trabalhos reais como prova principal.
-- **Do** aplique vermelho e oliva como folhas inteiras e preserve o contraste preto/palha.
-- **Do** construa interação como manipulação de impressos: espalhar, abrir, virar e revelar.
-- **Do** mantenha rótulos operacionais em Archivo, pequenos mas legíveis.
-- **Do** respeite redução de movimento e navegação por teclado.
+- **Do** usar fotografias e trabalhos reais como núcleo de qualquer composição.
+- **Do** manter hierarquia dramática com poucos tamanhos tipográficos claramente distintos.
+- **Do** preservar o empilhamento em uma coluna e áreas de toque confortáveis abaixo de 760px.
+- **Do** respeitar `prefers-reduced-motion` em transições e entradas.
 
 ### Don't:
 
-- **Don't** introduza gradientes, vidro, brilho neon ou cartões arredondados de produto digital.
-- **Don't** use ícones genéricos para representar serviços quando o trabalho real pode ocupar o espaço.
-- **Don't** transforme textura em ruído que prejudica a leitura.
-- **Don't** invente créditos, bandas, anos, clientes, métricas ou depoimentos.
-- **Don't** suavize a composição até ela parecer uma landing page bege genérica.
+- **Don't** suavizar todas as superfícies com o mesmo raio; cards, folhas e controles têm papéis diferentes.
+- **Don't** adicionar carrosséis, selos ou ornamentos genéricos sem função editorial.
+- **Don't** usar mais de uma faixa contínua em movimento na mesma página.
+- **Don't** substituir contraste e composição por efeitos pesados ou animações longas.
