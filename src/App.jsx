@@ -42,8 +42,7 @@ function About() { return <section className="about section-pad" id="sobre" data
 
 function ServiceArt({ service }) { if (!service.media.length) return <div className="planning-stack" aria-hidden="true"><span>planejamento</span><span>cronograma</span><span>presença</span></div>; return <div className="service-art-stack" aria-hidden="true">{service.media.map((media) => <img key={media} src={image(media)} alt="" loading="lazy" />)}</div> }
 function Services() {
-  const [activeId, setActiveId] = useState(services[0].id)
-  const [dismissedHoverId, setDismissedHoverId] = useState(null)
+  const [activeId, setActiveId] = useState(null)
   const cardsRef = useRef(null)
   useEffect(() => {
     const mobileQuery = window.matchMedia('(max-width: 760px)')
@@ -60,14 +59,11 @@ function Services() {
     cards.forEach((card) => observer.observe(card))
     return () => observer.disconnect()
   }, [])
-  const hasFineHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
-  const openOnHover = (id) => { if (hasFineHover() && dismissedHoverId !== id) setActiveId(id) }
-  const resetHoverDismissal = (id) => { if (dismissedHoverId === id) setDismissedHoverId(null) }
-  const toggleService = (id, active) => {
-    if (active) { setActiveId(null); if (hasFineHover()) setDismissedHoverId(id); return }
-    setDismissedHoverId(null); setActiveId(id)
+  const toggleService = (id, active) => setActiveId(active ? null : id)
+  const handleServiceKeyDown = (event, id, active) => {
+    if (event.key === 'Escape' && active) { event.currentTarget.blur(); setActiveId(null) }
   }
-  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards" ref={cardsRef}>{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} data-service-id={service.id} onMouseEnter={() => openOnHover(service.id)} onMouseLeave={() => resetHoverDismissal(service.id)}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
+  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards" ref={cardsRef}>{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} data-service-id={service.id}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)} onKeyDown={(event) => handleServiceKeyDown(event, service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail" aria-hidden={!active}><div className="service-card-detail-content"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
 function ImageLightbox({ src, sources = [src], title, onClose }) {
@@ -128,8 +124,10 @@ function App() {
     const update = () => { const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1); root.style.setProperty('--scroll-progress', `${Math.min(window.scrollY / max, 1)}`); if (heroSequence && !reducedMotion.matches) { const rect = heroSequence.getBoundingClientRect(); const distance = Math.max(heroSequence.offsetHeight - window.innerHeight, 1); const progress = Math.max(0, Math.min(1, -rect.top / distance)); heroSequence.style.setProperty('--hero-progress', `${progress}`) }; workGroups.forEach((group) => { const rect = group.getBoundingClientRect(); const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height))); group.style.setProperty('--work-progress', `${progress}`) }); frame = 0 }
     const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update) }
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) } }), { threshold: 0.12 })
-    targets.forEach((target) => observer.observe(target)); update(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll)
-    return () => { if (frame) window.cancelAnimationFrame(frame); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); observer.disconnect() }
+    targets.forEach((target) => { target.classList.add('reveal-ready'); observer.observe(target) })
+    const revealFallback = window.setTimeout(() => targets.forEach((target) => target.classList.add('is-visible')), 1200)
+    update(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll)
+    return () => { if (frame) window.cancelAnimationFrame(frame); window.clearTimeout(revealFallback); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); observer.disconnect() }
   }, [])
   return <><a className="skip-link" href="#conteudo">pular para o conteúdo</a><Header /><main id="conteudo"><div className="hero-sequence"><Hero /></div><MovingLine /><About /><Services /><Portfolio /><Contact /></main><Footer /></>
 }
