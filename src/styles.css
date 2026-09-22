@@ -306,7 +306,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 @media (min-width:761px) {
   .hero-poster::before { display:none; }
   .hero-poster h1 { display:block; max-width:calc(100% - 360px); font-size:clamp(3.9rem,5.5vw,6.15rem); line-height:.82; }
-  .hero-poster h1 span { display:inline; animation:none!important; clip-path:none!important; transform:none!important; }
+  .hero-poster h1 span { display:block; animation:none!important; clip-path:none!important; transform:none!important; }
   .hero-poster .button-link { top:calc(var(--header-height) + 26px); }
   .hero-poster .hero-meta { max-width:100%; grid-template-columns:minmax(250px,.9fr) minmax(230px,.7fr); }
   .hero-poster .hero-meta p:last-child { justify-self:start; text-align:left; }
