@@ -310,9 +310,9 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-poster .button-link { top:calc(var(--header-height) + 26px); }
   .hero-poster .hero-meta { max-width:100%; grid-template-columns:minmax(250px,.9fr) minmax(230px,.7fr); }
   .hero-poster .hero-meta p:last-child { justify-self:start; text-align:left; }
-  .hero-poster .hero-collage { height:clamp(265px,36vh,350px); }
-  .hero-poster .hero-collage img { height:clamp(230px,31vh,300px)!important; min-height:0; border:clamp(9px,.72vw,14px) solid var(--red-light); box-shadow:0 0 0 2px var(--ink); }
-  .hero-poster .hero-collage img:nth-of-type(2) { height:clamp(250px,34vh,325px)!important; }
+  .hero-poster .hero-collage { bottom:12px; height:clamp(340px,45vh,430px); }
+  .hero-poster .hero-collage img { height:clamp(290px,39vh,380px)!important; min-height:0; border:clamp(9px,.72vw,14px) solid var(--red-light); box-shadow:none; }
+  .hero-poster .hero-collage img:nth-of-type(2) { height:clamp(310px,42vh,405px)!important; }
   .hero-poster .hero-paper { inset:20px -26px -16px; background:var(--red-light); clip-path:polygon(0 14%,18% 0,35% 10%,52% 3%,71% 12%,89% 0,100% 13%,98% 92%,76% 100%,55% 94%,34% 100%,15% 91%,2% 100%); transform:none; }
 }
 
@@ -323,8 +323,8 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 .hero-poster .hero-poster-photo:nth-of-type(2) { position:relative; z-index:2; height:92%; transform:rotate(4deg) translateY(-2px); }
 .hero-poster .hero-poster-photo:nth-of-type(3) { justify-self:start; transform:rotate(-4deg) translateY(7px); }
 @media (min-width:761px) {
-  .hero-poster .hero-poster-photo { height:clamp(230px,31vh,300px)!important; border-width:clamp(10px,.8vw,16px); box-shadow:0 0 0 2px var(--ink); }
-  .hero-poster .hero-poster-photo:nth-of-type(2) { height:clamp(250px,34vh,325px)!important; }
+  .hero-poster .hero-poster-photo { height:clamp(290px,39vh,380px)!important; border-width:clamp(10px,.8vw,16px); box-shadow:none; }
+  .hero-poster .hero-poster-photo:nth-of-type(2) { height:clamp(310px,42vh,405px)!important; }
 }
 @media (max-width:760px) {
   .hero-poster .hero-poster-photo { border-width:4px; }
