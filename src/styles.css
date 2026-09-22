@@ -92,3 +92,51 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-visual img { filter:saturate(calc(.94 - var(--hero-progress) * .18)) contrast(calc(1.08 + var(--hero-progress) * .08)) brightness(calc(1 - var(--hero-progress) * .2)); }
   .hero-paper { translate:calc(var(--hero-progress) * -2vw) calc(var(--hero-progress) * 3vh); }
 }
+
+/* trabalhos: cartazes de cena, não uma vitrine neutra */
+:root { --electric-blue:var(--red-light); }
+.work-group { isolation:isolate; }
+.work-group-panel { color:var(--paper); background:rgba(21,20,19,.94); }
+.work-group header>span { color:var(--muted-paper); }
+.work-card { color:var(--paper); transform-origin:center; }
+.work-card-media { border:3px solid var(--red-light); background:var(--ink); }
+.work-card-media img { filter:grayscale(.82) contrast(1.22) brightness(.96); }
+.work-card:hover img { filter:grayscale(.08) contrast(1.1) brightness(1.02); }
+.work-card:nth-child(3n + 1) { transform:rotate(-1.7deg); }
+.work-card:nth-child(3n + 2) { transform:rotate(1.25deg); }
+.work-card:nth-child(3n) { transform:rotate(-.65deg); }
+.work-card:hover { transform:translateY(-10px) rotate(0deg); }
+.work-card-copy { position:relative; gap:4px 10px; padding:11px 4px 0; }
+.work-card-copy strong { font-family:'Bodoni Moda Variable',Georgia,serif; font-size:clamp(1rem,1.5vw,1.45rem); font-variation-settings:'opsz' 36,'wght' 640; letter-spacing:-.035em; line-height:.95; text-transform:uppercase; }
+.work-card-copy small { color:var(--muted-paper); }
+.work-card-copy span,.work-card-copy a { color:var(--red-light); }
+.work-card-action { background:var(--red-light); box-shadow:0 7px 18px rgba(0,0,0,.28); }
+.work-card-action:hover { color:var(--ink); background:var(--paper); }
+.group-video .work-group-panel { background:var(--red-light); }
+.group-video .work-card-media { border-color:var(--ink); }
+.group-video .work-card-copy small { color:rgba(21,20,19,.68); }
+.group-video .work-card-copy span,.group-video .work-card-copy a { color:var(--ink); }
+.group-video .work-card-action { color:var(--paper); background:var(--ink); }
+.group-video .work-card-action:hover { color:var(--ink); background:var(--paper); }
+.group-video header>span { color:rgba(21,20,19,.78); }
+.group-design .work-group-panel { background:var(--paper); color:var(--ink); }
+.group-design .work-card { color:var(--ink); }
+.group-design .work-card-copy small { color:var(--muted-ink); }
+.group-design .work-card-copy span,.group-design .work-card-copy a { color:var(--red); }
+.group-design header>span { color:var(--muted-ink); }
+
+@media (max-width:760px) {
+  .work-group-panel { padding:68px var(--gutter) 82px; background:var(--ink); color:var(--paper); }
+  .work-group header>span { color:var(--muted-paper); }
+  .work-grid { gap:24px 12px; margin-top:44px; }
+  .work-card { transform:none !important; }
+  .work-card-media { border-width:2px; }
+  .work-card-copy { padding:9px 0 0; }
+  .work-card-copy strong { font-size:clamp(.96rem,4.1vw,1.12rem); line-height:1; }
+  .work-card-copy small,.work-card-copy span,.work-card-copy a { font-size:.54rem; }
+  .work-card:hover { transform:translateY(-4px) !important; }
+  .work-card-action { width:42px; height:42px; }
+  .group-video .work-group-panel { background:var(--red-light); color:var(--ink); }
+  .group-design .work-group-panel { background:var(--paper); color:var(--ink); }
+  .group-design .work-card { color:var(--ink); }
+}
