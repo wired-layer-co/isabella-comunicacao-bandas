@@ -50,3 +50,13 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 @media (max-width:760px) { .portfolio h2 { font-size:clamp(3.1rem,12vw,4.4rem); } }
 
 .work-backdrop { pointer-events:none; }
+
+@media (min-width:761px) {
+  .hero h1 span:first-child { translate:calc(var(--hero-progress) * -5vw) calc(var(--hero-progress) * -1vh); }
+  .hero h1 span:nth-child(2) { translate:calc(var(--hero-progress) * 2.5vw) calc(var(--hero-progress) * 1vh); }
+  .hero h1 span:nth-child(3) { translate:calc(var(--hero-progress) * 6vw) calc(var(--hero-progress) * 2vh); }
+  .hero-copy>p,.hero-copy>.button-link { translate:0 calc(var(--hero-progress) * 4vh); opacity:calc(1 - var(--hero-progress) * .28); }
+  .hero-visual { translate:calc(var(--hero-progress) * 3vw) calc(var(--hero-progress) * 8vh); }
+  .hero-visual img { filter:saturate(calc(.94 - var(--hero-progress) * .18)) contrast(calc(1.08 + var(--hero-progress) * .08)) brightness(calc(1 - var(--hero-progress) * .2)); }
+  .hero-paper { translate:calc(var(--hero-progress) * -2vw) calc(var(--hero-progress) * 3vh); }
+}
