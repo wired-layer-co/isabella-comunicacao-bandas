@@ -16,4 +16,8 @@ npm run lint
 npm run build
 ```
 
-O `vite.config.js` usa caminhos relativos, portanto o conteúdo de `dist` funciona tanto na raiz quanto em um subdiretório do GitHub Pages.
+O build padrão usa caminhos relativos e continua publicado no GitHub Pages do projeto. Para integrar o site ao domínio principal, o workflow de `wired-layer-co/isabella-monteiro` gera este projeto com `--base=/socialmedia/` e publica o resultado em:
+
+```text
+https://isamonteiro.com.br/socialmedia/
+```
