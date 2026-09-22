@@ -331,10 +331,10 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 }
 @media (max-width:760px) {
   .hero-poster .hero-collage { top:360px; height:440px; display:block; }
-  .hero-poster .hero-poster-photo { position:absolute; top:42px; width:49%; height:280px; border-width:4px; }
-  .hero-poster .hero-poster-photo:nth-of-type(1) { left:-2%; transform:rotate(-7deg) translateY(9px); }
-  .hero-poster .hero-poster-photo:nth-of-type(2) { z-index:2; top:25px; left:26%; width:51%; height:304px; transform:rotate(3deg); }
-  .hero-poster .hero-poster-photo:nth-of-type(3) { right:-2%; transform:rotate(-5deg) translateY(7px); }
+  .hero-poster .hero-poster-photo { position:absolute; top:54px; width:42%; height:264px; border-width:5px; }
+  .hero-poster .hero-poster-photo:nth-of-type(1) { left:0; transform:rotate(-7deg) translateY(9px); }
+  .hero-poster .hero-poster-photo:nth-of-type(2) { z-index:2; top:38px; left:29%; width:42%; height:282px; transform:rotate(3deg); }
+  .hero-poster .hero-poster-photo:nth-of-type(3) { right:0; transform:rotate(-5deg) translateY(7px); }
 }
 
 /* trabalhos: molduras completas com a irregularidade leve de um cartaz montado à mão. */
