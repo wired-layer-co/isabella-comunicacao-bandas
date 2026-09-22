@@ -1,568 +1,70 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const image = (name) => `${import.meta.env.BASE_URL}images/${name}`
-
 const whatsappUrl = 'https://wa.me/554195027607?text=Oi%2C%20Isabella!%20Quero%20conversar%20sobre%20a%20comunica%C3%A7%C3%A3o%20da%20minha%20banda.'
+const instagramUrl = 'https://www.instagram.com/isamontwiro/'
+const briefingUrl = 'https://docs.google.com/document/d/1rVfrPcdVbG36qHY7Z5nHGwXxhnvj5nsCOjgY5yumc74/edit?tab=t.k3tytva7vtbt'
+const designDriveUrl = 'https://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive_link'
+const photoDriveUrl = 'https://drive.google.com/drive/folders/1giIvnR1vjzFNCmwcnonarq3PjRQZLimn?usp=drive_link'
 
 const services = [
-  {
-    id: 'fotografia',
-    title: 'Fotografia',
-    short: 'Ensaios promocionais, shows e backstage.',
-    body: 'Imagens que guardam a energia do palco e apresentam a identidade da banda fora dele.',
-    media: ['show-01.webp', 'show-02.webp', 'show-05.webp'],
-  },
-  {
-    id: 'video',
-    title: 'Captação e edição de vídeo',
-    short: 'Reels, TikToks, lançamentos e divulgação de shows.',
-    body: 'Material dinâmico pensado para o ritmo das redes sem tirar o foco da música.',
-    media: ['video-cover-1.webp', 'video-cover-2.webp', 'video-cover-3.webp'],
-  },
-  {
-    id: 'social',
-    title: 'Gerenciamento de redes sociais',
-    short: 'Planejamento, cronograma e presença digital.',
-    body: 'Uma rotina de comunicação que mantém a banda ativa, reconhecível e coerente.',
-    media: [],
-  },
-  {
-    id: 'design',
-    title: 'Design e artes visuais',
-    short: 'Capas, identidades, cartazes, zines e mixed media.',
-    body: 'Um universo visual próprio para cada lançamento, show ou fase do projeto.',
-    media: ['design-hayley.webp', 'design-ego-1.webp', 'design-ode.webp'],
-  },
+  { id: 'fotografia', title: 'fotografia', description: 'ensaios promocionais, cobertura de shows e backstage.', note: 'cobertura de uma turnê, divulgação de show ou imagens que definem uma nova fase.', link: briefingUrl, media: ['show-01.webp', 'show-02.webp', 'show-05.webp'] },
+  { id: 'video', title: 'captação e edição de vídeo', description: 'reels/tiktoks para lançamentos, divulgação de shows, clipes e material dinâmico para redes sociais.', note: 'material rápido, com ritmo e pensado para circular onde a sua banda é descoberta.', link: briefingUrl, media: ['video-cover-1.webp', 'video-cover-2.webp', 'video-cover-3.webp'] },
+  { id: 'social', title: 'gerenciamento de redes sociais', description: 'planejamento de conteúdo, cronograma estratégico e gestão de presença digital em todas as redes.', note: 'uma rotina de comunicação que acompanha o momento do projeto e mantém a presença viva.', media: [] },
+  { id: 'design', title: 'design e artes visuais', description: 'capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.', note: 'o universo visual que dá unidade para uma música, um show ou uma era inteira.', link: briefingUrl, media: ['design-hayley.webp', 'design-ego-1.webp', 'design-ode.webp'] },
 ]
 
-const photographyWorks = [
-  ['show-01.webp', 'Bateria em movimento'],
-  ['show-02.webp', 'Guitarra em primeiro plano'],
-  ['show-03.webp', 'Palco da Cisterna'],
-  ['show-04.webp', 'Luz e movimento no show'],
-  ['show-05.webp', 'Bateria sob luz magenta'],
-  ['show-06.webp', 'Banda vista do chão do palco'],
+const workGroups = [
+  { id: 'fotografia', title: 'fotografia', intro: 'show da Cysterna — cobertura de show', background: 'show-hero.webp', works: [['show-01.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-02.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-03.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-04.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-05.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-06.webp', 'Cysterna', 'cobertura de show', photoDriveUrl]] },
+  { id: 'video', title: 'captação e edição de vídeo', intro: 'reels e vídeos curtos para acompanhar o ritmo do lançamento e do palco.', background: 'video-cover-1.webp', works: [['video-cover-1.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/'], ['video-cover-2.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/'], ['video-cover-3.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/'], ['video-cover-1.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/'], ['video-cover-2.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/'], ['video-cover-3.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/']] },
+  { id: 'design', title: 'design e artes visuais', intro: 'capas, zines, peças impressas e movimento para a identidade sair do som e ocupar o mundo.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster Hayley Williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-2.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-3.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-4.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ode.webp', 'zine Ode to the Mets', 'zine', designDriveUrl], ['video-cover-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/'], ['video-cover-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/']] },
 ]
 
-const designWorks = [
-  ['design-hayley.webp', 'Pôster Hayley Williams'],
-  ['design-ego-1.webp', 'Ego Death at a Bachelorette Party'],
-  ['design-ego-2.webp', 'Ego Death, composição editorial'],
-  ['design-ego-3.webp', 'Ego Death, página dupla'],
-  ['design-ego-4.webp', 'Ego Death, encerramento'],
-  ['design-ode.webp', 'Zine Ode to the Mets'],
-]
-
-const videoWorks = [
-  ['DcRoU84BxO2', 'Vlog', 'video-cover-1.webp'],
-  ['DanYMZZuH8V', 'Tipografia em movimento', 'video-cover-2.webp'],
-  ['DYn16xdO8mv', 'Trend', 'video-cover-3.webp'],
-  ['DWUcUc6gT3Z', 'Edição tipográfica', null],
-  ['DV3ZrV8Dskl', 'Vídeo para redes sociais', null],
-  ['DVErpd1Afk6', 'Conteúdo de lançamento', null],
-]
-
-const animationWorks = [
-  ['DcbWDmAu1Y2', 'Animação mixed media'],
-  ['DcbehTuhsID', 'Animação mixed media'],
-]
-
-const categories = [
-  { id: 'fotografia', label: 'Fotografia', count: photographyWorks.length },
-  { id: 'video', label: 'Vídeo', count: videoWorks.length },
-  { id: 'design', label: 'Design', count: designWorks.length + animationWorks.length },
-  { id: 'social', label: 'Redes sociais', count: 4 },
-]
-
-function WhatsAppLink({ children, className = '' }) {
-  return (
-    <a className={`button-link ${className}`} href={whatsappUrl} target="_blank" rel="noreferrer">
-      <span>{children}</span>
-      <span className="button-line" aria-hidden="true" />
-    </a>
-  )
-}
+function Arrow() { return <span className="button-line" aria-hidden="true" /> }
+function WhatsAppLink({ children, className = '' }) { return <a className={`button-link ${className}`} href={whatsappUrl} target="_blank" rel="noreferrer"><span>{children}</span><Arrow /></a> }
 
 function Header() {
   const [open, setOpen] = useState(false)
-
   useEffect(() => {
     if (!open) return undefined
-    const onKeyDown = (event) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    document.body.classList.add('menu-open')
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.body.classList.remove('menu-open')
-      document.removeEventListener('keydown', onKeyDown)
-    }
+    const closeOnEscape = (event) => event.key === 'Escape' && setOpen(false)
+    document.body.classList.add('menu-open'); document.addEventListener('keydown', closeOnEscape)
+    return () => { document.body.classList.remove('menu-open'); document.removeEventListener('keydown', closeOnEscape) }
   }, [open])
-
   const close = () => setOpen(false)
-
-  return (
-    <header className={`site-header${open ? ' menu-is-open' : ''}`}>
-      <div className="scroll-progress" aria-hidden="true" />
-      <a className="brand" href="#inicio" onClick={close}>Isabella Monteiro</a>
-      <nav id="site-nav" className={`site-nav${open ? ' is-open' : ''}`} aria-label="Navegação principal">
-        <a href="#sobre" onClick={close}>Quem sou</a>
-        <a href="#servicos" onClick={close}>Serviços</a>
-        <a href="#trabalhos" onClick={close}>Trabalhos</a>
-        <a href="#contato" onClick={close}>Contato</a>
-      </nav>
-      <button
-        className="menu-toggle"
-        type="button"
-        aria-controls="site-nav"
-        aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
-      >
-        {open ? 'Fechar' : 'Menu'}
-      </button>
-    </header>
-  )
+  return <header className={`site-header${open ? ' menu-is-open' : ''}`}><div className="scroll-progress" aria-hidden="true" /><a className="brand" href="#inicio" onClick={close}>Isabella Monteiro</a><nav id="site-nav" className={`site-nav${open ? ' is-open' : ''}`} aria-label="Navegação principal"><a href="#sobre" onClick={close}>Quem sou</a><a href="#servicos" onClick={close}>Serviços</a><a href="#trabalhos" onClick={close}>Trabalhos</a><a href="#contato" onClick={close}>Contato</a></nav><button className="menu-toggle" type="button" aria-controls="site-nav" aria-expanded={open} onClick={() => setOpen((value) => !value)}>{open ? 'Fechar' : 'Menu'}</button></header>
 }
 
-function Hero() {
-  return (
-    <section className="hero" id="inicio">
-      <div className="hero-copy">
-        <h1>
-          <span>Profissionalize</span>
-          <span>a comunicação</span>
-          <span>da sua banda</span>
-        </h1>
-        <p>Músicos não precisam virar criadores de conteúdo. Quem entende do assunto faz isso por você.</p>
-        <WhatsAppLink>Falar sobre a sua banda</WhatsAppLink>
-      </div>
-      <figure className="hero-visual">
-        <div className="hero-paper" aria-hidden="true" />
-        <img src={image('show-hero.webp')} alt="Banda tocando em um show fotografado por Isabella Monteiro" fetchPriority="high" />
-        <figcaption>Fotografia de show</figcaption>
-      </figure>
-    </section>
-  )
-}
+function Hero() { return <section className="hero" id="inicio"><div className="hero-copy"><h1><span>Profissionalize</span><span>a comunicação</span><span>da sua banda</span></h1><p>Músicos não precisam virar criadores de conteúdo. Quem entende do assunto faz isso por você.</p><WhatsAppLink>falar sobre a sua banda</WhatsAppLink></div><figure className="hero-visual"><div className="hero-paper" aria-hidden="true" /><img src={image('show-hero.webp')} alt="Banda tocando em um show fotografado por Isabella Monteiro" fetchPriority="high" /><figcaption>fotografia de show</figcaption></figure></section> }
+function MovingLine() { const phrase = 'fotografia  vídeo  redes sociais  design e artes visuais  '; return <div className="moving-line" aria-hidden="true"><div className="moving-line-track"><span>{phrase}</span><span>{phrase}</span><span>{phrase}</span><span>{phrase}</span></div></div> }
 
-function MovingLine() {
-  const phrase = 'fotografia  vídeo  redes sociais  design e artes visuais  '
-  return (
-    <div className="moving-line" aria-hidden="true">
-      <div className="moving-line-track">
-        <span>{phrase}</span><span>{phrase}</span><span>{phrase}</span><span>{phrase}</span>
-      </div>
-    </div>
-  )
-}
+function About() { return <section className="about section-pad" id="sobre" data-reveal><div className="about-heading"><h2>quem<br />eu sou?</h2></div><div className="about-collage"><img className="about-art" src={image('isabella-portrait.webp')} alt="Retrato de Isabella Monteiro" loading="lazy" /><img className="about-photo" src={image('show-02.webp')} alt="" loading="lazy" /><span className="collage-note" aria-hidden="true">rock, estratégia<br />e imagem</span></div><div className="about-copy"><p className="about-lead">muito prazer, sou a <strong>Isabella Monteiro</strong>.</p><p>apaixonada por rock e pela cena independente desde 2023, quando comecei a acompanhar de perto o movimento no Rio Grande do Sul. hoje, morando em Curitiba, uno essa vivência e paixão com a minha formação em publicidade e propaganda.</p><p>sei que o som de uma banda tem alma, mas a internet exige estratégia, estética e constância, e músicos não deveriam ter que virar criadores de conteúdo para serem ouvidos. meu objetivo é cuidar de toda a comunicação, imagem e redes sociais do seu projeto, para que vocês apenas façam o que fazem de melhor: tocar.</p></div></section> }
 
-function About() {
-  return (
-    <section className="about section-pad" id="sobre" data-reveal>
-      <div className="about-heading">
-        <h2>Quem<br />eu sou?</h2>
-      </div>
-      <div className="about-collage">
-        <img className="about-art" src={image('isabella-portrait.webp')} alt="Retrato de Isabella Monteiro" loading="lazy" />
-        <img className="about-photo" src={image('show-02.webp')} alt="" loading="lazy" />
-        <span className="collage-note" aria-hidden="true">Isabella Monteiro<br />direção & imagem</span>
-      </div>
-      <div className="about-copy">
-        <p className="about-lead">Muito prazer, sou a <strong>Isabella Monteiro</strong>.</p>
-        <p>Apaixonada por rock e pela cena independente desde 2023, quando comecei a acompanhar de perto o movimento no Rio Grande do Sul. Hoje, morando em Curitiba, uno essa vivência e paixão com a minha formação em publicidade e propaganda.</p>
-        <p>Sei que o som de uma banda tem alma, mas a internet exige estratégia, estética e constância. Meu objetivo é cuidar da comunicação, imagem e redes sociais do seu projeto, para que vocês façam o que fazem de melhor: tocar.</p>
-      </div>
-    </section>
-  )
-}
-
-function PlanningStack() {
-  return (
-    <div className="planning-stack" aria-hidden="true">
-      <div className="planning-sheet sheet-one"><strong>Voz</strong><span>Identidade da banda</span></div>
-      <div className="planning-sheet sheet-two"><strong>Plano</strong><span>Conteúdo e cronograma</span></div>
-      <div className="planning-sheet sheet-three"><strong>Presença</strong><span>Constância no digital</span></div>
-    </div>
-  )
-}
-
-function ServicePreview({ service }) {
-  return (
-    <div className={`service-preview preview-${service.id}`} aria-live="polite">
-      <div className="preview-stage">
-        {service.media.length > 0 ? service.media.map((media, index) => (
-          <img
-            key={media}
-            className={`preview-layer layer-${index + 1}`}
-            src={image(media)}
-            alt=""
-          />
-        )) : <PlanningStack />}
-      </div>
-      <p>{service.body}</p>
-    </div>
-  )
-}
-
+function ServiceArt({ service }) { if (!service.media.length) return <div className="planning-stack" aria-hidden="true"><span>planejamento</span><span>cronograma</span><span>presença</span></div>; return <div className="service-art-stack" aria-hidden="true">{service.media.map((media) => <img key={media} src={image(media)} alt="" loading="lazy" />)}</div> }
 function Services() {
   const [activeId, setActiveId] = useState(services[0].id)
-  const activeService = services.find((service) => service.id === activeId)
-
-  return (
-    <section className="services section-pad" id="servicos" data-reveal>
-      <header className="services-intro">
-        <h2>O que<br />eu faço?</h2>
-        <p>Apoio seu projeto em uma demanda pontual ou em uma gestão contínua para manter a banda ativa e profissional no digital.</p>
-      </header>
-      <div className="services-body">
-        <div className="service-list" aria-label="Serviços disponíveis">
-          {services.map((service) => {
-            const active = service.id === activeId
-            return (
-              <div className="service-item" key={service.id}>
-                <button
-                  className={`service-row${active ? ' is-active' : ''}`}
-                  type="button"
-                  aria-expanded={active}
-                  aria-controls={`service-preview-${service.id}`}
-                  onClick={() => setActiveId(service.id)}
-                  onFocus={() => setActiveId(service.id)}
-                  onMouseEnter={() => setActiveId(service.id)}
-                >
-                  <span className="service-index">{String(services.indexOf(service) + 1).padStart(2, '0')}</span>
-                  <span className="service-name">{service.title}</span>
-                  <span className="service-short">{service.short}</span>
-                </button>
-                {active && (
-                  <div className="service-preview-mobile" id={`service-preview-${service.id}`}>
-                    <ServicePreview service={service} />
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-        <div className="service-preview-desktop">
-          <ServicePreview key={activeService.id} service={activeService} />
-        </div>
-      </div>
-    </section>
-  )
+  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards">{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} onMouseEnter={() => setActiveId(service.id)}><button type="button" aria-expanded={active} onClick={() => setActiveId(service.id)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small>{service.link && <a href={service.link} target="_blank" rel="noreferrer">ver briefing <Arrow /></a>}</div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
-function PhotographyGallery() {
-  return (
-    <div className="project-grid photo-work-grid">
-      {photographyWorks.map(([src, alt], index) => (
-        <figure className="project-card work-item" key={src} style={{ '--item-index': index }}>
-          <div className="card-media">
-            <img src={image(src)} alt={alt} loading="lazy" />
-          </div>
-          <figcaption>
-            <span><strong>{alt}</strong><small>Fotografia de show</small></span>
-            <b>{String(index + 1).padStart(2, '0')}</b>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-  )
-}
+function WorkCard({ work }) { const [src, title, kind, href] = work; const instagram = href.includes('instagram.com'); return <a className="work-card" href={href} target="_blank" rel="noreferrer"><span className="work-card-media"><img src={image(src)} alt={title} loading="lazy" />{instagram && <span className="play-mark" aria-label="Abrir no Instagram">↗</span>}</span><span className="work-card-copy"><strong>{title}</strong><small>{kind}</small><em>{instagram ? 'abrir no Instagram' : 'ver trabalho'}</em></span></a> }
+function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header><p>trabalhos</p><h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} />)}</div></div></section> }
+function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><p>gerenciamento de redes sociais</p><h3>uma presença que continua viva entre um show e outro.</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
+function Portfolio() { return <section className="portfolio" id="trabalhos"><div className="portfolio-intro"><p>trabalhos</p><h2>imagem, movimento<br />e direção visual.</h2><span>uma seleção de projetos para a cena independente.</span></div>{workGroups.map((group, index) => <WorkGroup key={group.id} group={group} index={index} />)}<SocialWork /></section> }
 
-function InstagramEmbed({ postId, title, cover, type = 'reel', index }) {
-  const frameRef = useRef(null)
-  const [mounted, setMounted] = useState(false)
-  const [ready, setReady] = useState(false)
-  const path = type === 'reel' ? 'reel' : 'p'
-
-  useEffect(() => {
-    const node = frameRef.current
-    if (!node || mounted) return undefined
-    if (!('IntersectionObserver' in window)) {
-      setMounted(true)
-      return undefined
-    }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setMounted(true)
-        observer.disconnect()
-      }
-    }, { rootMargin: '320px 0px' })
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [mounted])
-
-  return (
-    <article className="project-card work-item instagram-card" style={{ '--item-index': index }}>
-      <div className={`card-media instagram-frame${ready ? ' is-ready' : ''}`} ref={frameRef}>
-        <div className="embed-poster" aria-hidden="true">
-          {cover ? <img src={image(cover)} alt="" loading="lazy" /> : (
-            <span><small>mixed media</small>{title}</span>
-          )}
-          <b>Instagram ↗</b>
-        </div>
-        {mounted && (
-          <iframe
-            src={`https://www.instagram.com/${path}/${postId}/embed/`}
-            title={`${title} no Instagram`}
-            loading="lazy"
-            onLoad={() => setReady(true)}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        )}
-      </div>
-      <div className="card-copy">
-        <span><strong>{title}</strong><small>{type === 'reel' ? 'Reel' : 'Animação mixed media'}</small></span>
-        <a href={`https://www.instagram.com/${path}/${postId}/`} target="_blank" rel="noreferrer">Abrir</a>
-      </div>
-    </article>
-  )
-}
-
-function VideoGallery() {
-  return (
-    <div className="project-grid video-work-grid">
-      {videoWorks.map(([postId, title, cover], index) => (
-        <InstagramEmbed key={postId} postId={postId} title={title} cover={cover} index={index} />
-      ))}
-    </div>
-  )
-}
-
-function DesignGallery() {
-  return (
-    <>
-      <div className="project-grid design-work-grid">
-        {designWorks.map(([src, alt], index) => (
-          <figure className="project-card work-item" key={src} style={{ '--item-index': index }}>
-            <div className="card-media design-media">
-              <img src={image(src)} alt={alt} loading="lazy" />
-            </div>
-            <figcaption>
-              <span><strong>{alt}</strong><small>Design e artes visuais</small></span>
-              <b>{String(index + 1).padStart(2, '0')}</b>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <div className="project-grid animation-grid">
-        {animationWorks.map(([postId, title], index) => (
-          <InstagramEmbed key={postId} postId={postId} title={title} type="post" index={index} />
-        ))}
-      </div>
-    </>
-  )
-}
-
-function SocialGallery() {
-  const items = [
-    ['Entender', 'Momento, objetivos e personalidade da banda.'],
-    ['Planejar', 'Pautas e formatos que cabem na rotina do projeto.'],
-    ['Produzir', 'Texto, imagem e vídeo falando a mesma língua.'],
-    ['Manter', 'Cronograma e presença digital com constância.'],
-  ]
-  return (
-    <div className="social-work-grid">
-      <p>Gerenciamento é transformar a identidade da banda em uma presença que continua reconhecível de um post ao outro.</p>
-      <ol>
-        {items.map(([title, text], index) => (
-          <li key={title} style={{ '--item-index': index }}><strong>{title}</strong><span>{text}</span></li>
-        ))}
-      </ol>
-    </div>
-  )
-}
-
-function Portfolio() {
-  const [activeId, setActiveId] = useState('fotografia')
-  const [pendingId, setPendingId] = useState(null)
-  const [phase, setPhase] = useState('idle')
-  const timers = useRef([])
-
-  useEffect(() => () => timers.current.forEach((timer) => window.clearTimeout(timer)), [])
-
-  const selectCategory = (id) => {
-    if (id === activeId || phase !== 'idle') return
-    timers.current.forEach((timer) => window.clearTimeout(timer))
-    setPendingId(id)
-    setPhase('leaving')
-    timers.current = [
-      window.setTimeout(() => {
-        setActiveId(id)
-        setPhase('entering')
-      }, 260),
-      window.setTimeout(() => {
-        setPhase('idle')
-        setPendingId(null)
-      }, 620),
-    ]
-  }
-
-  const activeCategory = categories.find((category) => category.id === activeId)
-  const pendingCategory = categories.find((category) => category.id === pendingId)
-
-  return (
-    <section className="portfolio" id="trabalhos">
-      <div className="portfolio-shell">
-        <aside className="portfolio-rail">
-          <div className="rail-copy">
-            <h2>Trabalhos</h2>
-            <p>Fotografia, movimento e direção visual criados dentro da cena independente.</p>
-          </div>
-          <div className="category-list" aria-label="Filtrar trabalhos por categoria">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                type="button"
-                className={category.id === activeId ? 'is-active' : ''}
-                aria-pressed={category.id === activeId}
-                onClick={() => selectCategory(category.id)}
-              >
-                <span>{category.label}</span><b>{category.count}</b>
-              </button>
-            ))}
-          </div>
-        </aside>
-        <div className={`portfolio-stage is-${phase}`} aria-live="polite" aria-busy={phase !== 'idle'}>
-          <div className="category-heading">
-            <h3>{activeCategory.label}</h3>
-          </div>
-          <div className="gallery-wrap" key={activeId}>
-            {activeId === 'fotografia' && <PhotographyGallery />}
-            {activeId === 'video' && <VideoGallery />}
-            {activeId === 'design' && <DesignGallery />}
-            {activeId === 'social' && <SocialGallery />}
-          </div>
-          <div className="category-curtain" aria-hidden="true">
-            <span>{pendingCategory?.label || activeCategory.label}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Contact() {
-  return (
-    <section className="contact section-pad" id="contato" data-reveal>
-      <p>Entre em contato comigo e vamos entender juntos o que a sua banda precisa.</p>
-      <h2>Vamos fazer<br />a sua banda<br /><em>ser vista.</em></h2>
-      <WhatsAppLink className="contact-button">Abrir conversa no WhatsApp</WhatsAppLink>
-      <div className="contact-meta">
-        <a href="tel:+554195027607">+55 41 9502-7607</a>
-        <span>Curitiba, PR</span>
-      </div>
-    </section>
-  )
-}
-
-function Footer() {
-  const year = new Date().getFullYear()
-
-  return (
-    <footer className="site-footer">
-      <div className="site-footer-row">
-        <a href="#inicio">Isabella Monteiro</a>
-        <p>Comunicação para bandas independentes / {year}</p>
-        <a href="https://www.instagram.com/isamontwiro/" target="_blank" rel="noreferrer">Instagram</a>
-        <a href="#inicio">Voltar ao topo</a>
-      </div>
-      <div className="site-credit">
-        Desenvolvido por{' '}
-        <a href="https://portfolio.wired.rs/creative" target="_blank" rel="noreferrer">wired layer co.</a>
-      </div>
-    </footer>
-  )
-}
+function Contact() { return <section className="contact section-pad" id="contato" data-reveal><div className="contact-copy"><p>contato</p><h2>vamos fazer<br />a sua banda<br /><em>ser vista.</em></h2><span>entre em contato comigo e faça seu orçamento :)</span><div className="contact-actions"><WhatsAppLink>vamos conversar</WhatsAppLink><a className="button-link button-link-soft" href={instagramUrl} target="_blank" rel="noreferrer"><span>saiba quem eu sou</span><Arrow /></a></div></div><figure className="contact-image"><img src={image('show-05.webp')} alt="Bateria durante um show" loading="lazy" /><figcaption>vamos criar a próxima fase da sua banda.</figcaption></figure></section> }
+function Footer() { const year = new Date().getFullYear(); return <footer className="site-footer"><div className="site-footer-row"><a href="#inicio">Isabella Monteiro</a><p>comunicação para bandas independentes / {year}</p><a href={instagramUrl} target="_blank" rel="noreferrer">Instagram</a></div><div className="site-credit">Desenvolvido por <a href="https://portfolio.wired.rs/creative" target="_blank" rel="noreferrer">wired layer co.</a></div></footer> }
 
 function App() {
+  useEffect(() => { if (!window.location.hash) return undefined; const timer = window.setTimeout(() => document.querySelector(window.location.hash)?.scrollIntoView(), 80); return () => window.clearTimeout(timer) }, [])
   useEffect(() => {
-    if (!window.location.hash) return undefined
-    const timer = window.setTimeout(() => {
-      document.querySelector(window.location.hash)?.scrollIntoView()
-    }, 80)
-    return () => window.clearTimeout(timer)
+    const targets = Array.from(document.querySelectorAll('[data-reveal]')); const workGroups = Array.from(document.querySelectorAll('[data-work-group]')); const root = document.documentElement; let frame = 0
+    const update = () => { const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1); root.style.setProperty('--scroll-progress', `${Math.min(window.scrollY / max, 1)}`); workGroups.forEach((group) => { const rect = group.getBoundingClientRect(); const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height))); group.style.setProperty('--work-progress', `${progress}`) }); frame = 0 }
+    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update) }
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) } }), { threshold: 0.12 })
+    targets.forEach((target) => observer.observe(target)); update(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll)
+    return () => { if (frame) window.cancelAnimationFrame(frame); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); observer.disconnect() }
   }, [])
-
-  useEffect(() => {
-    const targets = Array.from(document.querySelectorAll('[data-reveal]'))
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach((target) => target.classList.add('is-visible'))
-      return undefined
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.12 })
-    targets.forEach((target) => observer.observe(target))
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const root = document.documentElement
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const hero = document.querySelector('.hero-sequence')
-    const loops = Array.from(document.querySelectorAll('[data-loop]'))
-    let frame = 0
-    let previousY = window.scrollY
-
-    const update = () => {
-      const y = window.scrollY
-      const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1)
-      root.style.setProperty('--scroll-progress', `${Math.min(y / max, 1)}`)
-      root.style.setProperty('--scroll-velocity', `${Math.max(-24, Math.min(24, y - previousY))}`)
-      previousY = y
-
-      if (hero && !reducedMotion.matches) {
-        const rect = hero.getBoundingClientRect()
-        const distance = Math.max(hero.offsetHeight - window.innerHeight, 1)
-        const progress = Math.max(0, Math.min(1, -rect.top / distance))
-        hero.style.setProperty('--hero-progress', `${progress}`)
-      }
-      frame = 0
-    }
-
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(update)
-    }
-    const loopObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.target.classList.toggle('is-inview', entry.isIntersecting))
-    })
-    loops.forEach((loop) => loopObserver.observe(loop))
-    const onVisibility = () => root.classList.toggle('page-hidden', document.hidden)
-
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    document.addEventListener('visibilitychange', onVisibility)
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      document.removeEventListener('visibilitychange', onVisibility)
-      loopObserver.disconnect()
-    }
-  }, [])
-
-  return (
-    <>
-      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
-      <Header />
-      <main id="conteudo">
-        <div className="hero-sequence"><Hero /></div>
-        <div data-loop><MovingLine /></div>
-        <About />
-        <Services />
-        <Portfolio />
-        <Contact />
-      </main>
-      <Footer />
-    </>
-  )
+  return <><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header /><main id="conteudo"><div className="hero-sequence"><Hero /></div><MovingLine /><About /><Services /><Portfolio /><Contact /></main><Footer /></>
 }
 
 export default App

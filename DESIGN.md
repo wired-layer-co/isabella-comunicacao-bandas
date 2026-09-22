@@ -119,7 +119,7 @@ A paleta é quente, impressa e musical: o contraste parece vir de luz de palco s
 
 ## Layout
 
-O layout usa gutter fluido, seções generosas e composição assimétrica. Hero e serviços combinam texto com mídia deslocada; o portfólio usa rail fixo no desktop e grade de dois cards alternados. Abaixo de 760px tudo vira uma coluna, o rail deixa de ser sticky e filtros passam a rolar horizontalmente. O menu mobile ocupa toda a altura útil abaixo do cabeçalho.
+O layout usa gutter fluido, seções generosas e composição assimétrica. Hero e serviços combinam texto com mídia deslocada; o portfólio é uma sequência de capítulos sobrepostos: cada linguagem de trabalho prende a tela por um momento, escurece sua imagem de fundo e entrega lugar ao próximo capítulo. Os trabalhos usam uma grade regular, com imagem quadrada e ficha curta. Abaixo de 760px tudo vira uma coluna e os capítulos deixam de ser sticky, preservando leitura e toque confortáveis. O menu mobile ocupa toda a altura útil abaixo do cabeçalho.
 
 O ritmo vertical principal é amplo. Espaçamentos menores existem dentro de cards e controles; entre blocos narrativos, preservar a pausa.
 
@@ -136,10 +136,10 @@ O sistema é plano por padrão. Profundidade aparece quando um objeto deve parec
 
 ## Motion
 
-O movimento traduz os padrões centrais das referências sem copiar sua composição: o hero permanece em cena por um curto trecho e desloca título e fotografia em velocidades diferentes; títulos entram por máscara; a troca de categoria é coberta por uma folha; colagens são distribuídas como cartões físicos; e a faixa contínua responde discretamente à velocidade de rolagem.
+O movimento traduz os padrões centrais das referências sem copiar sua composição: o hero permanece em cena por um curto trecho e desloca título e fotografia em velocidades diferentes; títulos entram por máscara; colagens são distribuídas como cartões físicos; e cada capítulo de trabalho é sobreposto pelo seguinte enquanto sua imagem de fundo escurece.
 
 - **Entrada editorial:** 700–1100ms, `cubic-bezier(0.16, 1, 0.3, 1)`, usada uma única vez na chegada de cada bloco.
-- **Mudança de estado:** 180–360ms para menu, filtros, serviço ativo e cortina de categoria.
+- **Mudança de estado:** 180–560ms para menu, serviço ativo e passagem entre capítulos de trabalho.
 - **Loops:** somente a faixa de serviços, pausada fora da viewport ou com a página oculta.
 - **Reduced motion:** remove parallax, máscaras e duração perceptível sem ocultar conteúdo.
 
@@ -158,11 +158,6 @@ Estrutura e controles usam cantos retos. Cards de portfólio adotam cantos edito
 - **Secondary / Ghost:** transparente com traço palha, invertendo no hover.
 - **Hover / Focus:** mudança sólida de cor em 180–220ms; foco visível de 3px.
 
-### Chips
-
-- **Style:** bloco preto compacto com contador em papel palha.
-- **State:** ativo em vermelho; no mobile a lista rola horizontalmente sem quebrar linha.
-
 ### Cards / Containers
 
 - **Corner Style:** curvatura ampla nos projetos; cantos retos nas folhas sobrepostas.
@@ -174,9 +169,9 @@ Estrutura e controles usam cantos retos. Cards de portfólio adotam cantos edito
 
 Cabeçalho fixo, compacto e translúcido no desktop. No mobile, o botão abre um painel vermelho de tela cheia com links Bodoni grandes, divisórias finas e rolagem vertical de segurança.
 
-### Service Row
+### Service Cards
 
-Lista editorial com número, nome e resumo. Hover, foco e seleção invertem para papel palha e deslocam o conteúdo horizontalmente sem animar dimensões de layout.
+Grade de quatro serviços expansíveis com título, descrição, CTA de briefing e colagem de mídia. O estado ativo muda para preto e revela conteúdo sem retirar a pessoa da seção.
 
 ## Do's and Don'ts
 
