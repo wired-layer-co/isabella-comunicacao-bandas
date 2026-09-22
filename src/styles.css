@@ -330,15 +330,23 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-poster .hero-poster-photo { border-width:4px; }
 }
 
-/* fotografia: grade reta e moldura integral; nenhuma borda depende de ficar para fora do card. */
-.work-card,.work-card:nth-child(3n + 1),.work-card:nth-child(3n + 2),.work-card:nth-child(3n) { padding:8px 8px 10px; overflow:hidden; border-radius:var(--radius); background:var(--red-light); transform:none!important; }
+/* trabalhos: molduras completas com a irregularidade leve de um cartaz montado à mão. */
+.work-card,.work-card:nth-child(3n + 1),.work-card:nth-child(3n + 2),.work-card:nth-child(3n) { padding:8px 8px 10px; overflow:visible; border-radius:var(--radius); background:var(--red-light); transform-origin:center; }
 .work-card::before { display:none; }
 .work-card-media { border:3px solid var(--ink); border-radius:calc(var(--radius) - 5px); clip-path:none; }
 .work-card-copy { padding:11px 3px 0; }
-.work-card:hover { transform:translateY(-5px)!important; }
+.work-card:nth-child(3n + 1) { transform:rotate(-1.15deg)!important; }
+.work-card:nth-child(3n + 2) { transform:rotate(.9deg)!important; }
+.work-card:nth-child(3n) { transform:rotate(-.65deg)!important; }
+.work-card:hover { transform:translateY(-5px) rotate(0deg)!important; }
 .group-video .work-card { background:var(--ink); }
 .group-design .work-card { background:var(--red); }
 @media (max-width:760px) {
+  .work-grid { gap:32px 18px; padding:10px 8px 28px; overflow:visible; }
   .work-card,.work-card:nth-child(3n + 1),.work-card:nth-child(3n + 2),.work-card:nth-child(3n) { padding:6px 6px 8px; }
+  .work-card:nth-child(3n + 1) { transform:rotate(-1deg)!important; }
+  .work-card:nth-child(3n + 2) { transform:rotate(.9deg)!important; }
+  .work-card:nth-child(3n) { transform:rotate(-.6deg)!important; }
+  .work-card.is-playing,.work-card.is-previewing { transform:none!important; }
   .work-card:hover { transform:none!important; }
 }
