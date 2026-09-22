@@ -145,13 +145,16 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 @media (max-width:760px) {
   .work-group-panel { padding:68px var(--gutter) 82px; background:var(--ink); color:var(--paper); }
   .work-group header>span { color:var(--muted-paper); }
-  .work-grid { gap:24px 12px; margin-top:44px; }
-  .work-card { transform:none !important; }
+  .work-grid { gap:28px 16px; margin-top:44px; padding-inline:4px; }
+  .work-card:nth-child(3n + 1) { transform:rotate(-1.2deg) !important; }
+  .work-card:nth-child(3n + 2) { transform:rotate(1deg) !important; }
+  .work-card:nth-child(3n) { transform:rotate(-.7deg) !important; }
+  .work-card.is-playing,.work-card.is-previewing { transform:none !important; }
   .work-card-media { border-width:2px; }
   .work-card-copy { padding:9px 0 0; }
   .work-card-copy strong { font-size:clamp(.96rem,4.1vw,1.12rem); line-height:1; }
   .work-card-copy small,.work-card-copy span,.work-card-copy a { font-size:.54rem; }
-  .work-card:hover { transform:translateY(-4px) !important; }
+  .work-card:hover { transform:translateY(-4px) rotate(0deg) !important; }
   .work-card-action { width:42px; height:42px; }
   .work-group h3 { max-inline-size:10ch; font-size:clamp(2.8rem,11.2vw,3.45rem); }
   .group-fotografia h3 { max-inline-size:none; font-size:clamp(2.45rem,10.6vw,2.8rem); }
