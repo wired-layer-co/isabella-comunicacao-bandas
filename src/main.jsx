@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/archivo'
 import '@fontsource-variable/bodoni-moda'
+import '@fontsource/grenze-gotisch/latin-ext-700.css'
 import App from './App.jsx'
 import './styles.css'
 
