@@ -224,7 +224,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .work-grid { margin-top:34px; gap:24px 14px; }
   .social-panel { padding-block:50px; }
   .social-panel h3 { max-width:12ch; font-size:clamp(2.35rem,9vw,3rem); }
-  .social-panel .button-link { margin-top:22px; }
+  .social-panel .button-link { width:100%; max-width:100%; margin-top:22px; margin-inline:0; box-sizing:border-box; }
   .contact { gap:48px; }
   .work-card-copy { gap:6px 9px; padding-top:10px; }
   .work-card-copy strong { font-size:clamp(1rem,4.45vw,1.22rem); }
