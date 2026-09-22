@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const image = (name) => `${import.meta.env.BASE_URL}images/${name}`
@@ -17,7 +17,7 @@ const services = [
 const workGroups = [
   { id: 'fotografia', title: 'fotografia', intro: 'show da cysterna. cobertura de show.', background: 'show-hero.webp', works: [['show-01.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-02.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-03.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-04.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-05.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-06.webp', 'cysterna', 'cobertura de show', photoDriveUrl]] },
   { id: 'video', title: 'captação e edição de vídeo', intro: 'vídeos de tipografia, divulgação de músicas e trends.', background: 'video-reel-DcRoU84BxO2.webp', works: [['video-reel-DcRoU84BxO2.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/', '16 / 9'], ['video-reel-DanYMZZuH8V.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/', '16 / 9'], ['video-reel-DYn16xdO8mv.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/', '9 / 16'], ['video-reel-DWUcUc6gT3Z.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/', '9 / 16'], ['video-reel-DV3ZrV8Dskl.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/', '9 / 16'], ['video-reel-DVErpd1Afk6.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/', '4 / 3']] },
-  { id: 'design', title: 'design e artes visuais', intro: 'capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster hayley williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'ego death at a bachelorette party', 'revista, 4 páginas', designDriveUrl, undefined, ['design-ego-1.webp', 'design-ego-2.webp', 'design-ego-3.webp', 'design-ego-4.webp']], ['design-ode.webp', 'zine ode to the mets', 'zine', designDriveUrl], ['video-cover-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/', '9 / 16'], ['video-cover-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/', '9 / 16']] },
+  { id: 'design', title: 'design e artes visuais', intro: 'capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster hayley williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'ego death at a bachelorette party', 'revista, 4 páginas', designDriveUrl, undefined, ['design-ego-1.webp', 'design-ego-2.webp', 'design-ego-3.webp', 'design-ego-4.webp']], ['design-ode.webp', 'zine ode to the mets', 'zine', designDriveUrl], ['design-mixed-media-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/', '9 / 16'], ['design-mixed-media-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/', '9 / 16']] },
 ]
 
 function Arrow() { return <span className="button-line" aria-hidden="true" /> }
@@ -44,45 +44,69 @@ function About() { return <section className="about section-pad" id="sobre" data
 function ServiceArt({ service }) { if (!service.media.length) return <div className="planning-stack" aria-hidden="true"><span>planejamento</span><span>cronograma</span><span>presença</span></div>; return <div className="service-art-stack" aria-hidden="true">{service.media.map((media) => <img key={media} src={image(media)} alt="" loading="lazy" />)}</div> }
 function Services() {
   const [activeId, setActiveId] = useState(null)
+  const activeIdRef = useRef(null)
   const cardsRef = useRef(null)
+  const activateService = useCallback((id) => { activeIdRef.current = id; setActiveId(id) }, [])
   useEffect(() => {
     const mobileQuery = window.matchMedia('(max-width: 760px)')
     if (!mobileQuery.matches || !cardsRef.current) return undefined
 
     const cards = Array.from(cardsRef.current.querySelectorAll('[data-service-id]'))
     let frame = 0
+    let lastScrollY = window.scrollY
+    let lastSwitch = 0
     const syncActiveCard = () => {
-      const readingLine = window.innerHeight * 0.46
-      const current = cards.reduce((selected, card) => (card.getBoundingClientRect().top <= readingLine ? card : selected), cards[0])
-      if (current) setActiveId((previous) => previous === current.dataset.serviceId ? previous : current.dataset.serviceId)
+      const now = performance.now()
+      const scrollDirection = Math.sign(window.scrollY - lastScrollY)
+      lastScrollY = window.scrollY
+      const currentIndex = Math.max(0, cards.findIndex((card) => card.dataset.serviceId === activeIdRef.current))
+      let nextIndex = currentIndex
+
+      if (!activeIdRef.current) {
+        nextIndex = Math.max(0, cards.findLastIndex((card) => card.getBoundingClientRect().top <= window.innerHeight * .58))
+      } else if (now - lastSwitch > 820) {
+        if (scrollDirection > 0 && currentIndex < cards.length - 1 && cards[currentIndex + 1].getBoundingClientRect().top <= window.innerHeight * .64) nextIndex = currentIndex + 1
+        if (scrollDirection < 0 && currentIndex > 0 && cards[currentIndex].getBoundingClientRect().top >= window.innerHeight * .34) nextIndex = currentIndex - 1
+      }
+
+      const nextId = cards[nextIndex]?.dataset.serviceId
+      if (nextId && nextId !== activeIdRef.current) { activateService(nextId); lastSwitch = now }
       frame = 0
     }
     const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(syncActiveCard) }
     syncActiveCard(); window.addEventListener('scroll', onScroll, { passive:true }); window.addEventListener('resize', onScroll)
     return () => { if (frame) window.cancelAnimationFrame(frame); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll) }
-  }, [])
-  const toggleService = (id, active) => setActiveId(active ? null : id)
+  }, [activateService])
+  const toggleService = (id, active) => activateService(active ? null : id)
+  const supportsIntentionalHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  const openFromHover = (id) => { if (supportsIntentionalHover()) activateService(id) }
+  const closeFromHover = (id) => { if (supportsIntentionalHover() && activeIdRef.current === id) activateService(null) }
   const handleServiceKeyDown = (event, id, active) => {
-    if (event.key === 'Escape' && active) { event.currentTarget.blur(); setActiveId(null) }
+    if (event.key === 'Escape' && active) { event.currentTarget.blur(); activateService(null) }
   }
-  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards" ref={cardsRef}>{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} data-service-id={service.id}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)} onKeyDown={(event) => handleServiceKeyDown(event, service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail" aria-hidden={!active}><div className="service-card-detail-content"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
+  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards" ref={cardsRef}>{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} data-service-id={service.id} onPointerEnter={() => openFromHover(service.id)} onPointerLeave={() => closeFromHover(service.id)}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)} onKeyDown={(event) => handleServiceKeyDown(event, service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail" aria-hidden={!active}><div className="service-card-detail-content"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
-function ImageLightbox({ src, sources = [src], title, onClose }) {
+function ImageLightbox({ items, activeIndex, onIndexChange, onClose }) {
   const [zoomed, setZoomed] = useState(false)
-  const [page, setPage] = useState(0)
-  const currentSrc = sources[page]
+  const current = items[activeIndex]
+  const move = (direction) => onIndexChange((activeIndex + direction + items.length) % items.length)
+  useEffect(() => setZoomed(false), [activeIndex])
   useEffect(() => {
-    const closeOnEscape = (event) => event.key === 'Escape' && onClose()
-    document.body.classList.add('lightbox-open'); document.addEventListener('keydown', closeOnEscape)
-    return () => { document.body.classList.remove('lightbox-open'); document.removeEventListener('keydown', closeOnEscape) }
-  }, [onClose])
-  const changePage = (nextPage) => { setZoomed(false); setPage(nextPage) }
-  return createPortal(<div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`imagem ampliada: ${title}`} onMouseDown={(event) => event.target === event.currentTarget && onClose()}><button className="lightbox-close" type="button" onClick={onClose} aria-label="fechar imagem">fechar</button><figure className={zoomed ? 'is-zoomed' : ''}><button className="lightbox-image" type="button" onClick={() => setZoomed((value) => !value)} aria-label={zoomed ? 'reduzir imagem' : 'ampliar imagem'}><img src={image(currentSrc)} alt={title} /></button><figcaption>{title} <span>{zoomed ? 'clique para reduzir' : 'clique para ampliar'}</span></figcaption>{sources.length > 1 && <div className="lightbox-pages"><button type="button" onClick={() => changePage(page - 1)} disabled={page === 0}>anterior</button><span>página {page + 1} de {sources.length}</span><button type="button" onClick={() => changePage(page + 1)} disabled={page === sources.length - 1}>próxima</button></div>}</figure></div>, document.body)
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+      if (event.key === 'ArrowLeft') onIndexChange((activeIndex - 1 + items.length) % items.length)
+      if (event.key === 'ArrowRight') onIndexChange((activeIndex + 1) % items.length)
+    }
+    document.body.classList.add('lightbox-open'); document.addEventListener('keydown', onKeyDown)
+    return () => { document.body.classList.remove('lightbox-open'); document.removeEventListener('keydown', onKeyDown) }
+  }, [activeIndex, items.length, onClose, onIndexChange])
+  const pageLabel = current.pageCount > 1 ? `página ${current.pageIndex + 1} de ${current.pageCount}` : `imagem ${activeIndex + 1} de ${items.length}`
+  return createPortal(<div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`imagem ampliada: ${current.title}`} onMouseDown={(event) => event.target === event.currentTarget && onClose()}><button className="lightbox-close" type="button" onClick={onClose} aria-label="fechar imagem">fechar</button><button className="lightbox-nav is-previous" type="button" onClick={() => move(-1)} aria-label="ver imagem anterior">anterior</button><figure className={zoomed ? 'is-zoomed' : ''}><button className="lightbox-image" type="button" onClick={() => setZoomed((value) => !value)} aria-label={zoomed ? 'reduzir imagem' : 'ampliar imagem'}><img src={image(current.src)} alt={current.title} /></button><figcaption>{current.title}<span>{pageLabel} · {zoomed ? 'clique para reduzir' : 'clique para ampliar'}</span></figcaption></figure><button className="lightbox-nav is-next" type="button" onClick={() => move(1)} aria-label="ver próxima imagem">próxima</button></div>, document.body)
 }
 
-function WorkCard({ work, index }) {
-  const [src, title, kind, href, aspect = '16 / 9', gallery] = work
+function WorkCard({ work, index, previewing = false, onPreview }) {
+  const [src, title, kind, href, aspect = '16 / 9'] = work
   const [aspectWidth, aspectHeight] = aspect.split('/').map(Number)
   const portrait = aspectWidth < aspectHeight
   const instagram = href.includes('instagram.com')
@@ -91,7 +115,6 @@ function WorkCard({ work, index }) {
   const [playing, setPlaying] = useState(false)
   const [embedStatus, setEmbedStatus] = useState('idle')
   const [embedAttempt, setEmbedAttempt] = useState(0)
-  const [previewing, setPreviewing] = useState(false)
 
   useEffect(() => {
     if (!playing || embedStatus !== 'loading') return undefined
@@ -108,14 +131,23 @@ function WorkCard({ work, index }) {
       {instagram && playing && <iframe key={embedAttempt} src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen onLoad={() => setEmbedStatus('ready')} onError={() => setEmbedStatus('error')} />}
       {instagram && playing && embedStatus !== 'ready' && <div className={`work-card-embed-status is-${embedStatus}`} aria-live="polite">{embedStatus === 'loading' ? <span>carregando vídeo</span> : <><span>o instagram não respondeu</span><button type="button" onClick={retryEmbed}>tentar de novo</button></>}</div>}
       {instagram && !playing && <button className="work-card-action" type="button" onClick={startEmbed} aria-label={`reproduzir ${title}`}>play</button>}
-      {!instagram && <button className="work-card-action" type="button" onClick={() => setPreviewing(true)} aria-label={`ampliar ${title}`}>ver</button>}
+      {!instagram && <button className="work-card-action" type="button" onClick={onPreview} aria-label={`ampliar ${title}`}>ver</button>}
     </div>
     <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>
-    {previewing && <ImageLightbox src={src} sources={gallery} title={title} onClose={() => setPreviewing(false)} />}
   </article>
 }
-function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header>{index === 0 && <p>trabalhos que já fiz</p>}<h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} index={workIndex} />)}</div></div></section> }
-function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" id="redes" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><p>gerenciamento de redes sociais</p><h3 className="sr-only">gerenciamento de redes sociais</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
+function WorkGroup({ group, index }) {
+  const [activePreview, setActivePreview] = useState(null)
+  const previewItems = group.works.flatMap((work, workIndex) => {
+    const [src, title, , href, , gallery] = work
+    if (href.includes('instagram.com')) return []
+    const sources = gallery || [src]
+    return sources.map((source, pageIndex) => ({ src: source, title, workIndex, pageIndex, pageCount: sources.length }))
+  })
+  const previewStartFor = (workIndex) => previewItems.findIndex((item) => item.workIndex === workIndex)
+  return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header>{index === 0 && <p>trabalhos que já fiz</p>}<h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => { const previewStart = previewStartFor(workIndex); return <WorkCard key={`${work[0]}-${workIndex}`} work={work} index={workIndex} previewing={activePreview !== null && previewItems[activePreview]?.workIndex === workIndex} onPreview={previewStart >= 0 ? () => setActivePreview(previewStart) : undefined} /> })}</div></div>{activePreview !== null && <ImageLightbox items={previewItems} activeIndex={activePreview} onIndexChange={setActivePreview} onClose={() => setActivePreview(null)} />}</section>
+}
+function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" id="redes" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><h3>gerenciamento de redes sociais</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
 function Portfolio() { return <section className="portfolio" id="trabalhos">{workGroups.map((group, index) => <WorkGroup key={group.id} group={group} index={index} />)}<SocialWork /></section> }
 
 function Contact() { return <section className="contact section-pad" id="contato" data-reveal><div className="contact-copy"><p>contato</p><h2>vamos fazer<br />a sua banda<br /><em>ser vista.</em></h2><span>entre em contato comigo e faça seu orçamento :)</span><div className="contact-actions"><WhatsAppLink>vamos conversar</WhatsAppLink><a className="button-link button-link-soft" href={instagramUrl} target="_blank" rel="noreferrer"><span>saiba quem eu sou</span><Arrow /></a></div></div><figure className="contact-image"><img src={image('show-05.webp')} alt="bateria durante um show" loading="lazy" /><figcaption>fotografia de show.</figcaption></figure></section> }
