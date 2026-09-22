@@ -83,6 +83,8 @@ function ImageLightbox({ src, sources = [src], title, onClose }) {
 
 function WorkCard({ work, index }) {
   const [src, title, kind, href, aspect = '16 / 9', gallery] = work
+  const [aspectWidth, aspectHeight] = aspect.split('/').map(Number)
+  const portrait = aspectWidth < aspectHeight
   const instagram = href.includes('instagram.com')
   const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
   const type = href.includes('/p/') ? 'p' : 'reel'
@@ -100,7 +102,7 @@ function WorkCard({ work, index }) {
   const startEmbed = () => { setPlaying(true); setEmbedStatus('loading') }
   const retryEmbed = () => { setEmbedStatus('loading'); setEmbedAttempt((attempt) => attempt + 1) }
 
-  return <article className={`work-card${playing ? ' is-playing' : ''}${embedStatus === 'ready' ? ' is-embed-ready' : ''}${embedStatus === 'error' ? ' is-embed-error' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
+  return <article className={`work-card${portrait ? ' is-portrait' : ''}${playing ? ' is-playing' : ''}${embedStatus === 'ready' ? ' is-embed-ready' : ''}${embedStatus === 'error' ? ' is-embed-error' : ''}${previewing ? ' is-previewing' : ''}`} style={playing ? { '--embed-aspect': aspect } : undefined}>
     <div className="work-card-media">
       <img className="work-card-poster" src={image(src)} alt={title} loading="lazy" />
       {instagram && playing && <iframe key={embedAttempt} src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen onLoad={() => setEmbedStatus('ready')} onError={() => setEmbedStatus('error')} />}
@@ -113,7 +115,7 @@ function WorkCard({ work, index }) {
   </article>
 }
 function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header>{index === 0 && <p>trabalhos que já fiz</p>}<h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} index={workIndex} />)}</div></div></section> }
-function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><p>gerenciamento de redes sociais</p><h3 className="sr-only">gerenciamento de redes sociais</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
+function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" id="redes" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><p>gerenciamento de redes sociais</p><h3 className="sr-only">gerenciamento de redes sociais</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
 function Portfolio() { return <section className="portfolio" id="trabalhos">{workGroups.map((group, index) => <WorkGroup key={group.id} group={group} index={index} />)}<SocialWork /></section> }
 
 function Contact() { return <section className="contact section-pad" id="contato" data-reveal><div className="contact-copy"><p>contato</p><h2>vamos fazer<br />a sua banda<br /><em>ser vista.</em></h2><span>entre em contato comigo e faça seu orçamento :)</span><div className="contact-actions"><WhatsAppLink>vamos conversar</WhatsAppLink><a className="button-link button-link-soft" href={instagramUrl} target="_blank" rel="noreferrer"><span>saiba quem eu sou</span><Arrow /></a></div></div><figure className="contact-image"><img src={image('show-05.webp')} alt="bateria durante um show" loading="lazy" /><figcaption>fotografia de show.</figcaption></figure></section> }
