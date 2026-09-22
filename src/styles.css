@@ -297,7 +297,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-poster .button-link { position:relative; top:auto; right:auto; bottom:auto; left:auto; display:flex; width:100%; margin-top:18px; min-height:48px; }
   .hero-poster .button-link { color:var(--ink); border-color:var(--red-light); background:var(--red-light); }
   .hero-poster .button-link:hover { color:var(--paper); border-color:var(--paper); background:var(--ink); }
-  .hero-poster .hero-collage { top:430px; right:26px; bottom:auto; left:26px; height:420px; }
+  .hero-poster .hero-collage { top:430px; right:26px; bottom:auto; left:26px; height:360px; }
   .hero-poster .hero-collage img { border-width:3px; }
   .hero-poster .hero-paper { inset:8px -16px -10px; clip-path:polygon(0 4%,17% 0,35% 8%,51% 1%,70% 10%,88% 0,100% 9%,98% 92%,77% 100%,56% 94%,34% 100%,15% 91%,2% 100%); }
 }
@@ -327,7 +327,8 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .hero-poster .hero-poster-photo:nth-of-type(2) { height:clamp(250px,34vh,325px)!important; }
 }
 @media (max-width:760px) {
-  .hero-poster .hero-poster-photo { border-width:4px; }
+  .hero-poster .hero-poster-photo { height:66%; border-width:4px; }
+  .hero-poster .hero-poster-photo:nth-of-type(2) { height:72%; }
 }
 
 /* trabalhos: molduras completas com a irregularidade leve de um cartaz montado à mão. */
