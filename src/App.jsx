@@ -46,8 +46,23 @@ function Services() {
   return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards">{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} onMouseEnter={() => setActiveId(service.id)}><button type="button" aria-expanded={active} onClick={() => setActiveId(service.id)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small>{service.link && <a href={service.link} target="_blank" rel="noreferrer">ver briefing <Arrow /></a>}</div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
-function WorkCard({ work }) { const [src, title, kind, href] = work; const instagram = href.includes('instagram.com'); return <a className="work-card" href={href} target="_blank" rel="noreferrer"><span className="work-card-media"><img src={image(src)} alt={title} loading="lazy" />{instagram && <span className="play-mark" aria-label="Abrir no Instagram">↗</span>}</span><span className="work-card-copy"><strong>{title}</strong><small>{kind}</small><em>{instagram ? 'abrir no Instagram' : 'ver trabalho'}</em></span></a> }
-function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header><p>trabalhos</p><h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} />)}</div></div></section> }
+function WorkCard({ work, index }) {
+  const [src, title, kind, href] = work
+  const instagram = href.includes('instagram.com')
+  const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
+  const type = href.includes('/p/') ? 'p' : 'reel'
+  const [playing, setPlaying] = useState(false)
+
+  return <article className={`work-card${playing ? ' is-playing' : ''}`}>
+    <div className="work-card-media">
+      {playing ? <iframe src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no Instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <img src={image(src)} alt={title} loading="lazy" />}
+      {instagram && !playing && <button className="work-card-action" type="button" onClick={() => setPlaying(true)} aria-label={`Reproduzir ${title}`}>play</button>}
+      {!instagram && <a className="work-card-action" href={href} target="_blank" rel="noreferrer" aria-label={`Abrir ${title}`}>ver</a>}
+    </div>
+    <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no Instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>
+  </article>
+}
+function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header><p>trabalhos</p><h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} index={workIndex} />)}</div></div></section> }
 function SocialWork() { const steps = [['entender', 'momento, objetivos e personalidade da banda.'], ['planejar', 'pautas e formatos que cabem na rotina do projeto.'], ['produzir', 'texto, imagem e vídeo falando a mesma língua.'], ['manter', 'cronograma e presença digital com constância.']]; return <section className="social-work" data-work-group><div className="work-backdrop social-backdrop" aria-hidden="true" /><div className="social-panel"><p>gerenciamento de redes sociais</p><h3>uma presença que continua viva entre um show e outro.</h3><ol>{steps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}</ol><WhatsAppLink>montar um plano</WhatsAppLink></div></section> }
 function Portfolio() { return <section className="portfolio" id="trabalhos"><div className="portfolio-intro"><p>trabalhos</p><h2>imagem, movimento<br />e direção visual.</h2><span>alguns trabalhos que já fiz.</span></div>{workGroups.map((group, index) => <WorkGroup key={group.id} group={group} index={index} />)}<SocialWork /></section> }
 
