@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 const image = (name) => `${import.meta.env.BASE_URL}images/${name}`
 const whatsappUrl = 'https://wa.me/554195027607?text=Oi%2C%20Isabella!%20Quero%20conversar%20sobre%20a%20comunica%C3%A7%C3%A3o%20da%20minha%20banda.'
@@ -16,7 +17,7 @@ const services = [
 
 const workGroups = [
   { id: 'fotografia', title: 'fotografia', intro: 'show da Cysterna. cobertura de show.', background: 'show-hero.webp', works: [['show-01.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-02.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-03.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-04.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-05.webp', 'Cysterna', 'cobertura de show', photoDriveUrl], ['show-06.webp', 'Cysterna', 'cobertura de show', photoDriveUrl]] },
-  { id: 'video', title: 'captação e edição de vídeo', intro: 'reels e vídeos para lançamento e divulgação de shows.', background: 'video-cover-1.webp', works: [['video-cover-1.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/'], ['video-cover-2.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/'], ['video-cover-3.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/'], ['video-cover-1.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/'], ['video-cover-2.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/'], ['video-cover-3.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/']] },
+  { id: 'video', title: 'captação e edição de vídeo', intro: 'reels e vídeos para lançamento e divulgação de shows.', background: 'video-reel-DcRoU84BxO2.webp', works: [['video-reel-DcRoU84BxO2.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/'], ['video-reel-DanYMZZuH8V.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/'], ['video-reel-DYn16xdO8mv.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/'], ['video-reel-DWUcUc6gT3Z.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/'], ['video-reel-DV3ZrV8Dskl.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/'], ['video-reel-DVErpd1Afk6.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/']] },
   { id: 'design', title: 'design e artes visuais', intro: 'capas, zines, peças impressas e movimento para a identidade sair do som e ocupar o mundo.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster Hayley Williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-2.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-3.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ego-4.webp', 'Ego Death at a Bachelorette Party', 'revista', designDriveUrl], ['design-ode.webp', 'zine Ode to the Mets', 'zine', designDriveUrl], ['video-cover-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/'], ['video-cover-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/']] },
 ]
 
@@ -46,20 +47,32 @@ function Services() {
   return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards">{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} onMouseEnter={() => setActiveId(service.id)}><button type="button" aria-expanded={active} onClick={() => setActiveId(service.id)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small>{service.link && <a href={service.link} target="_blank" rel="noreferrer">ver briefing <Arrow /></a>}</div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
+function ImageLightbox({ src, title, onClose }) {
+  const [zoomed, setZoomed] = useState(false)
+  useEffect(() => {
+    const closeOnEscape = (event) => event.key === 'Escape' && onClose()
+    document.body.classList.add('lightbox-open'); document.addEventListener('keydown', closeOnEscape)
+    return () => { document.body.classList.remove('lightbox-open'); document.removeEventListener('keydown', closeOnEscape) }
+  }, [onClose])
+  return createPortal(<div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`Imagem ampliada: ${title}`} onMouseDown={(event) => event.target === event.currentTarget && onClose()}><button className="lightbox-close" type="button" onClick={onClose} aria-label="Fechar imagem">fechar</button><figure className={zoomed ? 'is-zoomed' : ''}><button className="lightbox-image" type="button" onClick={() => setZoomed((value) => !value)} aria-label={zoomed ? 'Reduzir imagem' : 'Ampliar imagem'}><img src={image(src)} alt={title} /></button><figcaption>{title} <span>{zoomed ? 'clique para reduzir' : 'clique para ampliar'}</span></figcaption></figure></div>, document.body)
+}
+
 function WorkCard({ work, index }) {
   const [src, title, kind, href] = work
   const instagram = href.includes('instagram.com')
   const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
   const type = href.includes('/p/') ? 'p' : 'reel'
   const [playing, setPlaying] = useState(false)
+  const [previewing, setPreviewing] = useState(false)
 
-  return <article className={`work-card${playing ? ' is-playing' : ''}`}>
+  return <article className={`work-card${playing ? ' is-playing' : ''}${previewing ? ' is-previewing' : ''}`}>
     <div className="work-card-media">
       {playing ? <iframe src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no Instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /> : <img src={image(src)} alt={title} loading="lazy" />}
       {instagram && !playing && <button className="work-card-action" type="button" onClick={() => setPlaying(true)} aria-label={`Reproduzir ${title}`}>play</button>}
-      {!instagram && <a className="work-card-action" href={href} target="_blank" rel="noreferrer" aria-label={`Abrir ${title}`}>ver</a>}
+      {!instagram && <button className="work-card-action" type="button" onClick={() => setPreviewing(true)} aria-label={`Ampliar ${title}`}>ver</button>}
     </div>
     <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no Instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>
+    {previewing && <ImageLightbox src={src} title={title} onClose={() => setPreviewing(false)} />}
   </article>
 }
 function WorkGroup({ group, index }) { return <section className={`work-group group-${group.id}`} style={{ '--group-index': index }} data-work-group><div className="work-backdrop" style={{ backgroundImage: `url(${image(group.background)})` }} aria-hidden="true" /><div className="work-group-panel"><header><p>trabalhos</p><h3>{group.title}</h3><span>{group.intro}</span></header><div className="work-grid">{group.works.map((work, workIndex) => <WorkCard key={`${work[0]}-${workIndex}`} work={work} index={workIndex} />)}</div></div></section> }
