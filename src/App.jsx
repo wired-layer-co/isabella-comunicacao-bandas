@@ -90,13 +90,12 @@ function Services() {
 function ImageLightbox({ items, activeIndex, onIndexChange, onClose }) {
   const [zoomed, setZoomed] = useState(false)
   const current = items[activeIndex]
-  const move = (direction) => onIndexChange((activeIndex + direction + items.length) % items.length)
-  useEffect(() => setZoomed(false), [activeIndex])
+  const move = (direction) => { setZoomed(false); onIndexChange((activeIndex + direction + items.length) % items.length) }
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') onClose()
-      if (event.key === 'ArrowLeft') onIndexChange((activeIndex - 1 + items.length) % items.length)
-      if (event.key === 'ArrowRight') onIndexChange((activeIndex + 1) % items.length)
+      if (event.key === 'ArrowLeft') { setZoomed(false); onIndexChange((activeIndex - 1 + items.length) % items.length) }
+      if (event.key === 'ArrowRight') { setZoomed(false); onIndexChange((activeIndex + 1) % items.length) }
     }
     document.body.classList.add('lightbox-open'); document.addEventListener('keydown', onKeyDown)
     return () => { document.body.classList.remove('lightbox-open'); document.removeEventListener('keydown', onKeyDown) }
