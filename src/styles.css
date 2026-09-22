@@ -5,7 +5,8 @@ body { min-width:320px; min-height:100%; margin:0; overflow-x:hidden; background
 body::after { position:fixed; z-index:100; inset:0; background:var(--grain-image) repeat; content:''; mix-blend-mode:soft-light; opacity:.07; pointer-events:none; }
 body.menu-open { overflow:hidden; }
 button,a { color:inherit; } button { border:0; font:inherit; } img { display:block; max-width:100%; } a { text-underline-offset:.28em; text-decoration-thickness:1px; }
-::selection { color:var(--paper); background:var(--red); }
+::selection { color:var(--ink); background:#4bc5ff; text-shadow:none; }
+::-moz-selection { color:var(--ink); background:#4bc5ff; text-shadow:none; }
 ::-webkit-scrollbar { width:11px; } ::-webkit-scrollbar-track { background:var(--ink); } ::-webkit-scrollbar-thumb { border:3px solid var(--ink); background:var(--red); }
 :focus-visible { outline:3px solid var(--paper-bright); outline-offset:5px; }
 .skip-link { position:fixed; z-index:120; top:12px; left:12px; padding:12px 16px; color:var(--ink); background:var(--paper); font-weight:750; transform:translateY(-180%); } .skip-link:focus { transform:translateY(0); }
