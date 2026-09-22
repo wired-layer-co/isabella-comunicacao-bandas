@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const image = (name) => `${import.meta.env.BASE_URL}images/${name}`
@@ -44,6 +44,22 @@ function ServiceArt({ service }) { if (!service.media.length) return <div classN
 function Services() {
   const [activeId, setActiveId] = useState(services[0].id)
   const [dismissedHoverId, setDismissedHoverId] = useState(null)
+  const cardsRef = useRef(null)
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 760px)')
+    if (!mobileQuery.matches || !cardsRef.current) return undefined
+
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+      if (current) setActiveId(current.target.dataset.serviceId)
+    }, { rootMargin: '-28% 0px -42%', threshold: [0.12, 0.35, 0.6] })
+
+    const cards = cardsRef.current.querySelectorAll('[data-service-id]')
+    cards.forEach((card) => observer.observe(card))
+    return () => observer.disconnect()
+  }, [])
   const hasFineHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
   const openOnHover = (id) => { if (hasFineHover() && dismissedHoverId !== id) setActiveId(id) }
   const resetHoverDismissal = (id) => { if (dismissedHoverId === id) setDismissedHoverId(null) }
@@ -51,7 +67,7 @@ function Services() {
     if (active) { setActiveId(null); if (hasFineHover()) setDismissedHoverId(id); return }
     setDismissedHoverId(null); setActiveId(id)
   }
-  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards">{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} onMouseEnter={() => openOnHover(service.id)} onMouseLeave={() => resetHoverDismissal(service.id)}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
+  return <section className="services section-pad" id="servicos" data-reveal><header className="services-intro"><h2>o que<br />eu faço?</h2><p>apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a cobertura de uma turnê ou o visual de um novo single, ou em uma gestão contínua para manter sua banda sempre ativa e profissional no digital.</p></header><div className="service-cards" ref={cardsRef}>{services.map((service) => { const active = activeId === service.id; return <article className={`service-card${active ? ' is-active' : ''}`} key={service.id} data-service-id={service.id} onMouseEnter={() => openOnHover(service.id)} onMouseLeave={() => resetHoverDismissal(service.id)}><button type="button" aria-expanded={active} onClick={() => toggleService(service.id, active)}><span>{service.title}</span><span className="service-card-toggle">{active ? 'fechar' : 'ver mais'}</span></button><div className="service-card-detail"><div><p>{service.description}</p><small>{service.note}</small></div><ServiceArt service={service} /></div></article> })}</div><div className="section-cta"><p>não sabe qual formato encaixa melhor agora?</p><WhatsAppLink>vamos conversar</WhatsAppLink></div></section>
 }
 
 function ImageLightbox({ src, title, onClose }) {
