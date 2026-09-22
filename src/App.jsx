@@ -48,16 +48,17 @@ function Services() {
     const mobileQuery = window.matchMedia('(max-width: 760px)')
     if (!mobileQuery.matches || !cardsRef.current) return undefined
 
-    const observer = new IntersectionObserver((entries) => {
-      const current = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (current) setActiveId(current.target.dataset.serviceId)
-    }, { rootMargin: '-28% 0px -42%', threshold: [0.12, 0.35, 0.6] })
-
-    const cards = cardsRef.current.querySelectorAll('[data-service-id]')
-    cards.forEach((card) => observer.observe(card))
-    return () => observer.disconnect()
+    const cards = Array.from(cardsRef.current.querySelectorAll('[data-service-id]'))
+    let frame = 0
+    const syncActiveCard = () => {
+      const readingLine = window.innerHeight * 0.46
+      const current = cards.reduce((selected, card) => (card.getBoundingClientRect().top <= readingLine ? card : selected), cards[0])
+      if (current) setActiveId((previous) => previous === current.dataset.serviceId ? previous : current.dataset.serviceId)
+      frame = 0
+    }
+    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(syncActiveCard) }
+    syncActiveCard(); window.addEventListener('scroll', onScroll, { passive:true }); window.addEventListener('resize', onScroll)
+    return () => { if (frame) window.cancelAnimationFrame(frame); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll) }
   }, [])
   const toggleService = (id, active) => setActiveId(active ? null : id)
   const handleServiceKeyDown = (event, id, active) => {

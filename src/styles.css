@@ -233,12 +233,13 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 }
 
 /* serviços: expansão por intenção explícita. O hover continua um detalhe visual e não move o alvo sob o cursor. */
-.service-card { display:grid; min-height:132px; grid-template-rows:auto 0fr; overflow:hidden; transition:grid-template-rows 460ms cubic-bezier(.16,1,.3,1); }
-.service-card-detail { display:block; min-height:0; max-height:none; padding:0; opacity:0; overflow:hidden; transition:opacity 180ms ease; }
-.service-card-detail-content { display:grid; grid-template-columns:minmax(0,1fr) minmax(180px,.72fr); gap:32px; padding:20px 30px 32px; }
+.service-card { display:grid; min-height:132px; grid-template-rows:auto 0fr; overflow:hidden; transition:grid-template-rows 760ms cubic-bezier(.22,1,.36,1),background 300ms ease; }
+.service-card-detail { display:block; min-height:0; max-height:none; padding:0; opacity:0; overflow:hidden; transition:opacity 190ms ease; }
+.service-card-detail-content { display:grid; grid-template-columns:minmax(0,1fr) minmax(180px,.72fr); gap:32px; padding:20px 30px 32px; transform:translateY(16px); transition:transform 620ms cubic-bezier(.16,1,.3,1); }
 .service-card.is-active { background:var(--ink); }
 .service-card.is-active { grid-template-rows:auto 1fr; }
-.service-card.is-active .service-card-detail { max-height:none; padding:0; opacity:1; }
+.service-card.is-active .service-card-detail { max-height:none; padding:0; opacity:1; transition-delay:115ms; }
+.service-card.is-active .service-card-detail-content { transform:translateY(0); }
 .service-card button { position:relative; z-index:1; }
 @media (hover:hover) and (pointer:fine) {
   .service-card:not(.is-active):hover button { color:var(--paper-bright); background:rgba(21,20,19,.11); }
