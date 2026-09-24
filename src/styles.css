@@ -55,8 +55,8 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 :root { --electric-blue:var(--red); }
 
 @media (min-width:761px) {
-  .work-group { padding:18px; background:var(--ink); }
-  .work-group-panel { top:calc(var(--header-height) + 18px); min-height:calc(100dvh - var(--header-height) - 36px); padding:clamp(46px,5vw,76px); background:rgba(249,232,172,.96); color:var(--ink); }
+  .work-group { padding:0; background:var(--ink); }
+  .work-group-panel { top:var(--header-height); min-height:calc(100dvh - var(--header-height)); padding:clamp(46px,5vw,76px); background:rgba(249,232,172,.96); color:var(--ink); }
   .work-group header>span { color:var(--muted-ink); }
 }
 
@@ -135,7 +135,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 .work-group header { max-width:none; }
 .work-group h3 { max-inline-size:9ch; font-size:clamp(2.7rem,4.1vw,4rem); overflow-wrap:anywhere; }
 .group-fotografia h3 { max-inline-size:none; font-size:clamp(2.45rem,3vw,3rem); overflow-wrap:normal; }
-.work-group { min-height:100dvh; }
+.work-group { min-height:calc(100dvh - var(--header-height)); }
 .image-lightbox { position:fixed; z-index:140; inset:0; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:clamp(10px,2vw,28px); padding:62px clamp(14px,2.5vw,40px) 18px; background:rgba(21,20,19,.96); backdrop-filter:blur(10px); animation:lightbox-in 220ms ease-out both; }
 .image-lightbox figure { display:grid; width:100%; min-width:0; max-height:100%; align-self:center; grid-template-rows:minmax(0,auto) auto; margin:0; gap:10px; }
 .lightbox-image { display:grid; width:100%; min-height:0; max-height:calc(100dvh - 130px); place-items:center; padding:0; overflow:hidden; color:inherit; background:transparent; cursor:zoom-in; }
@@ -197,7 +197,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 .group-design .work-card::before { border-color:var(--red); }
 
 @media (max-width:760px) {
-  .work-group-panel,.social-panel { border-radius:0; }
+  .work-group-panel { border-radius:var(--radius-large); }
 }
 
 /* display neo-gótica: reservada para os momentos de maior impacto */
@@ -427,7 +427,25 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 
 /* redes sociais: processo apresentado como tabela editorial */
 .social-work { min-height:initial; }
-.social-panel { position:relative; top:auto; min-height:initial; align-content:start; gap:clamp(34px,5vw,64px); padding:clamp(72px,8vw,112px) var(--gutter); color:var(--ink); border-radius:0; background:var(--paper); }
+.social-panel { position:relative; top:auto; min-height:initial; align-content:start; gap:clamp(34px,5vw,64px); padding:clamp(72px,8vw,112px) var(--gutter); color:var(--ink); border-radius:var(--radius-large) var(--radius-large) 0 0; background:var(--paper); }
+/* A cor anterior aparece apenas nas frestas deixadas pelos cantos arredondados. */
+.group-fotografia::before,.group-video::before,.group-design::before,.group-design::after,.social-work::before { position:absolute; right:0; left:0; height:var(--radius-large); content:''; pointer-events:none; }
+.group-fotografia::before { z-index:1; top:0; background:var(--red); }
+.group-video::before { z-index:1; bottom:0; background:var(--red-light); }
+.group-design::before { z-index:1; top:0; background:var(--red-light); }
+.group-design::after { z-index:0; bottom:0; background:var(--olive); }
+.social-work::before { z-index:1; top:0; background:var(--olive); }
+/* Capítulos em folha cheia: cada topo arredondado revela a cor anterior. */
+.services { --chapter-underlay:var(--olive); --chapter-surface:var(--red); }
+.contact { --chapter-underlay:var(--paper); --chapter-surface:var(--ink); }
+.services,.contact { position:relative; isolation:isolate; background:var(--chapter-underlay); }
+.services::before,.contact::before { position:absolute; z-index:-1; inset:0; border-radius:var(--radius-large) var(--radius-large) 0 0; background:var(--chapter-surface); content:''; pointer-events:none; }
+.site-footer { position:relative; z-index:3; border-radius:var(--radius-large) var(--radius-large) 0 0; }
+@media (max-width:760px) {
+  .site-footer { padding-block:16px calc(16px + env(safe-area-inset-bottom)); }
+  .site-footer-row { gap:8px; }
+  .site-credit { display:block; margin-top:8px; padding-top:8px; font-size:.72rem; line-height:1.5; }
+}
 .social-panel h3 { max-width:13ch; font-size:clamp(2.7rem,5vw,5.2rem); line-height:.86; }
 .social-panel ol { display:block; }
 .social-panel li,
@@ -474,7 +492,7 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
   .about h2 { font-size:clamp(4.3rem,10vw,5.6rem); }
   .about-collage { min-height:540px; }
 
-  .work-group { min-height:initial; padding:14px; }
+  .work-group { min-height:initial; padding:0; }
   .work-group-panel { position:relative; top:auto; min-height:initial; grid-template-columns:1fr; gap:42px; padding:clamp(52px,7vw,68px); }
   .work-group header { max-width:46ch; }
   .work-group h3 { max-inline-size:none; font-size:clamp(3.4rem,7.5vw,4.7rem); overflow-wrap:normal; }
