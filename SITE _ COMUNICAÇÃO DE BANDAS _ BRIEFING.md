@@ -1,30 +1,25 @@
-# links de trabalhos
-
 **design e artes visuais**  
-animação mixed media \- [https://www.instagram.com/p/DcbWDmAu1Y2/](https://www.instagram.com/p/DcbWDmAu1Y2/)  
-animação mixed media \- [https://www.instagram.com/p/DcbehTuhsID/](https://www.instagram.com/p/DcbehTuhsID/)  
-poster hayley williams \- pasta DESIGN E ARTES VISUASIS 
-revista ego death at a bachelorette party \- [pasta DESIGN E ARTES VISUASIS  (pngs separados em partes porem é a mesma revista/design)  
-zine ode to the mets \- pasta DESIGN E ARTES VISUASIS 
+design merch \- [https\://www\.instagram.com/p/DeShEHAhku5/](https://www.instagram.com/p/DeShEHAhku5/)  
+animação mixed media \- [https\://www\.instagram.com/p/DcbWDmAu1Y2/](https://www.instagram.com/p/DcbWDmAu1Y2/)  
+animação mixed media \- [https\://www\.instagram.com/p/DcbehTuhsID/](https://www.instagram.com/p/DcbehTuhsID/)  
+poster hayley williams \- [https\://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive\_link](https://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive_link)  
+revista ego death at a bachelorette party \- [https\://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive\_link](https://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive_link) (pngs separados em partes porem é a mesma revista/design)  
+zine ode to the mets \- [https\://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive\_link](https://drive.google.com/drive/folders/1bcR0bI2IUFyaEegqXy4r466bG6qrRDes?usp=drive_link)
 
 **captação e edição de vídeo**  
-vlog \- [https://www.instagram.com/reel/DcRoU84BxO2/](https://www.instagram.com/reel/DcRoU84BxO2/)  
-tipografia \- [https://www.instagram.com/reel/DanYMZZuH8V/](https://www.instagram.com/reel/DanYMZZuH8V/)  
-trend \- [https://www.instagram.com/reel/DYn16xdO8mv/](https://www.instagram.com/reel/DYn16xdO8mv/)  
-tipografia \- [https://www.instagram.com/reel/DWUcUc6gT3Z/](https://www.instagram.com/reel/DWUcUc6gT3Z/)  
-tipografia \- [https://www.instagram.com/reel/DV3ZrV8Dskl/](https://www.instagram.com/reel/DV3ZrV8Dskl/)  
-tipografia \- [https://www.instagram.com/reel/DVErpd1Afk6/](https://www.instagram.com/reel/DVErpd1Afk6/)
+vlog \- [https\://www\.instagram.com/reel/DcRoU84BxO2/](https://www.instagram.com/reel/DcRoU84BxO2/)  
+tipografia \- [https\://www\.instagram.com/reel/DanYMZZuH8V/](https://www.instagram.com/reel/DanYMZZuH8V/)  
+trend \- [https\://www\.instagram.com/reel/DYn16xdO8mv/](https://www.instagram.com/reel/DYn16xdO8mv/)  
+tipografia \- [https\://www\.instagram.com/reel/DWUcUc6gT3Z/](https://www.instagram.com/reel/DWUcUc6gT3Z/)  
+tipografia \- [https\://www\.instagram.com/reel/DV3ZrV8Dskl/](https://www.instagram.com/reel/DV3ZrV8Dskl/)  
+tipografia \- [https\://www\.instagram.com/reel/DVErpd1Afk6/](https://www.instagram.com/reel/DVErpd1Afk6/)
 
 **fotografia**  
-show da cisterna \- PASTA FOTOGRAFIA
-
-# conteúdo do site
+show da cysterna \- [https\://drive.google.com/drive/folders/1giIvnR1vjzFNCmwcnonarq3PjRQZLimn?usp=drive\_link](https://drive.google.com/drive/folders/1giIvnR1vjzFNCmwcnonarq3PjRQZLimn?usp=drive_link)
 
 **profissionalize a comunicação da sua banda**  
 músicos não precisam virar criadores de conteúdo. quem entende do assunto faz isso por você.  
-
-meu numero +55 41 9502-7607
-**\[botão whatsapp** “vamos conversar”**\]** 
+**\[botão whatsapp** “vamos conversar”**\]**
 
 \-
 
@@ -44,33 +39,33 @@ apoio seu projeto do jeito que você precisar. seja em demandas pontuais, como a
 
 * **fotografia**  
   * ensaios promocionais, cobertura de shows e backstage.  
-  * *Trabalhos anteriores:* \[Ex: Banda X \- 2025 | Banda Y \- 2024\]
+  * *[SITE | COMUNICAÇÃO DE BANDAS | BRIEFING](https://docs.google.com/document/d/1rVfrPcdVbG36qHY7Z5nHGwXxhnvj5nsCOjgY5yumc74/edit?tab=t.k3tytva7vtbt)*
 
 * **captação e edição de vídeo**  
   * reels/tiktoks para lançamentos, divulgação de shows, clipes e material dinâmico para redes sociais.  
-  * *trabalhos anteriores:* \[Ex: Banda X \- 2025 | Banda Z \- 2024\]
+  * *[SITE | COMUNICAÇÃO DE BANDAS | BRIEFING](https://docs.google.com/document/d/1rVfrPcdVbG36qHY7Z5nHGwXxhnvj5nsCOjgY5yumc74/edit?tab=t.k3tytva7vtbt)*
 
 * **gerenciamento de redes sociais**  
-  * planejamento de conteúdo, cronograma estratégico e gestão de presença digital em todas as redes.  
-  * *trabalhos anteriores:* \[Ex: Banda Y \- 2025\]
+  * planejamento de conteúdo, cronograma estratégico e gestão de presença digital em todas as redes.
 
 * **design e artes visuais**  
   * capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.  
-  * *trabalhos anteriores:* \[Ex: Banda W \- 2025 | Banda X \- 2024\]
+  * *[SITE | COMUNICAÇÃO DE BANDAS | BRIEFING](https://docs.google.com/document/d/1rVfrPcdVbG36qHY7Z5nHGwXxhnvj5nsCOjgY5yumc74/edit?tab=t.k3tytva7vtbt)*
 
 \-
 
 **contato**  
-entre em contato comigo e vamos entender juntos a sua necessidade :)  
-**\[botão whatsApp** “vamos conversar”**\]**
-
-# referências visuais
+entre em contato comigo e faça seu orçamento :)  
+**\[botão whatsapp** “vamos conversar”**\]**  
+**\[botão instagram** “saiba quem eu sou”**\]**
 
 referência dos cards pros serviços:  
-/home/luis/dev/bobera/isa/com-bandas/COMUNICACAO-BANDAS/refs ui/aXwM_89fCxZBfBkD-optimized.mp4  
-/home/luis/dev/bobera/isa/com-bandas/COMUNICACAO-BANDAS/refs ui/c1ff80b6-17af-48bf-9135-32ff48ef1baf-demo.webp
+[https\://collectui.com/designs/gallery-ui-design-inspiration/d2b75c08-0134-48fe-9f38-bb652b48e0fd](https://collectui.com/designs/gallery-ui-design-inspiration/d2b75c08-0134-48fe-9f38-bb652b48e0fd)  
+[https\://layers.to/layers/clvgl4g23000il30db4tudcmp?utm\_source=Pinterest\&utm\_medium=organic](https://layers.to/layers/clvgl4g23000il30db4tudcmp?utm_source=Pinterest&utm_medium=organic)
+
 referência de cores, de fontes e construção p/ site:   
-[https://carminecreative.showit.site/](https://carminecreative.showit.site/)  
-[https://abysshausagency.showit.site/](https://abysshausagency.showit.site/)  
-/home/luis/dev/bobera/isa/com-bandas/COMUNICACAO-BANDAS/refs ui/200dee0b2b01416e969ea48b95d73c67.jpg
-/home/luis/dev/bobera/isa/com-bandas/COMUNICACAO-BANDAS/refs ui/d2111c359735f375fb2aec84d5af0d5a.jpg
+[https\://carminecreative.showit.site/](https://carminecreative.showit.site/)  
+[https\://abysshausagency.showit.site/](https://abysshausagency.showit.site/)  
+[https\://br.pinterest.com/pin/8655424282969078/](https://br.pinterest.com/pin/8655424282969078/)  
+[https\://br.pinterest.com/pin/3377768467312126/](https://br.pinterest.com/pin/3377768467312126/)
+

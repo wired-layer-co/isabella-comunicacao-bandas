@@ -519,3 +519,11 @@ button,a { color:inherit; } button { border:0; font:inherit; } img { display:blo
 @media (min-width:761px) {
   .about { padding-top:clamp(56px,6vw,80px); }
 }
+
+/* fotografia: coleções por banda, com capa larga e leitura rápida no mobile */
+.group-fotografia .work-grid { width:100%; max-width:960px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.group-fotografia .work-card-media { aspect-ratio:16 / 9; }
+
+@media (max-width:760px) {
+  .group-fotografia .work-grid { max-width:100%; grid-template-columns:1fr; }
+}

@@ -47,10 +47,10 @@ O visitante chega por indicação ou redes sociais, reconhece rapidamente a espe
 ## Evidence on Hand
 
 - Briefing em `SITE _ COMUNICAÇÃO DE BANDAS _ BRIEFING.md`.
-- Sete fotografias reais de show em `FOTOGRAFIA/`.
-- Pôster, zine e quatro páginas de revista em `DESIGN E ARTES VISUAIS/`.
+- 28 fotografias reais de show e evento: 7 da Cysterna, 6 da Hiperfoco, 10 da Qeva e 5 da Refepest Halloween, fornecidas no pacote de 21/10/2026 e convertidas para `public/images/`.
+- Pôster, zine e quatro páginas de revista em `DESIGN E ARTES VISUAIS/`; merch oficial da QEVA publicado em `https://www.instagram.com/p/DeShEHAhku5/`.
 - Referências locais de UI em `refs ui/`.
-- Não há foto pessoal de Isabella, logotipo, depoimentos, preços ou créditos completos de banda e ano.
+- Não há depoimentos, preços ou créditos completos de banda e ano.
 
 ## Product Principles
 

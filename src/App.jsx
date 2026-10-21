@@ -15,9 +15,14 @@ const services = [
 ]
 
 const workGroups = [
-  { id: 'fotografia', title: 'fotografia', intro: 'show da cysterna. cobertura de show.', background: 'show-hero.webp', works: [['show-01.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-02.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-03.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-04.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-05.webp', 'cysterna', 'cobertura de show', photoDriveUrl], ['show-06.webp', 'cysterna', 'cobertura de show', photoDriveUrl]] },
+  { id: 'fotografia', title: 'fotografia', intro: 'cobertura de shows e eventos. cysterna, hiperfoco, qeva e refepest halloween.', background: 'show-hero.webp', works: [
+    ['show-07.webp', 'cysterna', 'cobertura de show · 7 fotos', photoDriveUrl, undefined, ['show-07.webp', 'show-01.webp', 'show-02.webp', 'show-03.webp', 'show-04.webp', 'show-05.webp', 'show-06.webp']],
+    ['show-hiperfoco-06.webp', 'hiperfoco', 'cobertura de show · 6 fotos', photoDriveUrl, undefined, ['show-hiperfoco-06.webp', 'show-hiperfoco-01.webp', 'show-hiperfoco-02.webp', 'show-hiperfoco-03.webp', 'show-hiperfoco-04.webp', 'show-hiperfoco-05.webp']],
+    ['show-qeva-03.webp', 'qeva', 'cobertura de show · 10 fotos', photoDriveUrl, undefined, ['show-qeva-03.webp', 'show-qeva-01.webp', 'show-qeva-02.webp', 'show-qeva-04.webp', 'show-qeva-05.webp', 'show-qeva-06.webp', 'show-qeva-07.webp', 'show-qeva-08.webp', 'show-qeva-09.webp', 'show-qeva-10.webp']],
+    ['show-refepest-02.webp', 'refepest halloween', 'cobertura de evento · 5 fotos', photoDriveUrl, undefined, ['show-refepest-02.webp', 'show-refepest-01.webp', 'show-refepest-03.webp', 'show-refepest-04.webp', 'show-refepest-05.webp']],
+  ] },
   { id: 'video', title: 'captação e edição de vídeo', intro: 'vídeos de tipografia, divulgação de músicas e trends.', background: 'video-reel-DcRoU84BxO2.webp', works: [['video-reel-DcRoU84BxO2.webp', 'vlog', 'reel', 'https://www.instagram.com/reel/DcRoU84BxO2/', '16 / 9'], ['video-reel-DanYMZZuH8V.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DanYMZZuH8V/', '16 / 9'], ['video-reel-DYn16xdO8mv.webp', 'trend', 'reel', 'https://www.instagram.com/reel/DYn16xdO8mv/', '9 / 16'], ['video-reel-DWUcUc6gT3Z.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DWUcUc6gT3Z/', '9 / 16'], ['video-reel-DV3ZrV8Dskl.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DV3ZrV8Dskl/', '9 / 16'], ['video-reel-DVErpd1Afk6.webp', 'tipografia', 'reel', 'https://www.instagram.com/reel/DVErpd1Afk6/', '4 / 3']] },
-  { id: 'design', title: 'design e artes visuais', intro: 'capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster hayley williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'ego death at a bachelorette party', 'revista, 4 páginas', designDriveUrl, undefined, ['design-ego-1.webp', 'design-ego-2.webp', 'design-ego-3.webp', 'design-ego-4.webp']], ['design-ode.webp', 'zine ode to the mets', 'zine', designDriveUrl], ['design-mixed-media-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/', '9 / 16'], ['design-mixed-media-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/', '9 / 16']] },
+  { id: 'design', title: 'design e artes visuais', intro: 'capas de single/álbum, identidade visual, animações mixed media, zines, cartazes de turnê e artes para feed.', background: 'design-hayley.webp', works: [['design-hayley.webp', 'poster hayley williams', 'artes visuais', designDriveUrl], ['design-ego-1.webp', 'ego death at a bachelorette party', 'revista, 4 páginas', designDriveUrl, undefined, ['design-ego-1.webp', 'design-ego-2.webp', 'design-ego-3.webp', 'design-ego-4.webp']], ['design-ode.webp', 'zine ode to the mets', 'zine', designDriveUrl], ['design-mixed-media-1.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbWDmAu1Y2/', '9 / 16'], ['design-mixed-media-2.webp', 'animação mixed media', 'instagram', 'https://www.instagram.com/p/DcbehTuhsID/', '9 / 16'], ['design-merch-qeva.webp', 'design merch', 'merch · qeva', 'https://www.instagram.com/p/DeShEHAhku5/', '4 / 5', undefined, 'link']] },
 ]
 
 function Arrow() { return <span className="button-line" aria-hidden="true" /> }
@@ -105,10 +110,10 @@ function ImageLightbox({ items, activeIndex, onIndexChange, onClose }) {
 }
 
 function WorkCard({ work, index, previewing = false, onPreview }) {
-  const [src, title, kind, href, aspect = '16 / 9'] = work
+  const [src, title, kind, href, aspect = '16 / 9', , mode] = work
   const [aspectWidth, aspectHeight] = aspect.split('/').map(Number)
   const portrait = aspectWidth < aspectHeight
-  const instagram = href.includes('instagram.com')
+  const instagram = href.includes('instagram.com') && mode !== 'link'
   const post = instagram ? href.match(/instagram\.com\/(?:reel|p)\/([^/]+)/)?.[1] : null
   const type = href.includes('/p/') ? 'p' : 'reel'
   const [playing, setPlaying] = useState(false)
@@ -129,19 +134,19 @@ function WorkCard({ work, index, previewing = false, onPreview }) {
     <div className="work-card-media">
       <img className="work-card-poster" src={image(src)} alt={title} loading="lazy" />
       {instagram && playing && <iframe key={embedAttempt} src={`https://www.instagram.com/${type}/${post}/embed/captioned/`} title={`${title} no instagram`} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen onLoad={() => setEmbedStatus('ready')} onError={() => setEmbedStatus('error')} />}
-      {instagram && playing && embedStatus !== 'ready' && <div className={`work-card-embed-status is-${embedStatus}`} aria-live="polite">{embedStatus === 'loading' ? <span>carregando vídeo</span> : <><span>o instagram não respondeu</span><button type="button" onClick={retryEmbed}>tentar de novo</button></>}</div>}
-      {instagram && playing && <button className="work-card-close" type="button" onClick={closeEmbed} aria-label={`fechar vídeo ${title}`}>fechar</button>}
-      {instagram && !playing && <button className="work-card-action" type="button" onClick={startEmbed} aria-label={`reproduzir ${title}`}>play</button>}
+      {instagram && playing && embedStatus !== 'ready' && <div className={`work-card-embed-status is-${embedStatus}`} aria-live="polite">{embedStatus === 'loading' ? <span>{type === 'p' ? 'carregando post' : 'carregando vídeo'}</span> : <><span>o instagram não respondeu</span><button type="button" onClick={retryEmbed}>tentar de novo</button></>}</div>}
+      {instagram && playing && <button className="work-card-close" type="button" onClick={closeEmbed} aria-label={`fechar ${type === 'p' ? 'post' : 'vídeo'} ${title}`}>fechar</button>}
+      {instagram && !playing && <button className="work-card-action" type="button" onClick={startEmbed} aria-label={`${type === 'p' ? 'ver' : 'reproduzir'} ${title}`}>{type === 'p' ? 'ver' : 'play'}</button>}
       {!instagram && <button className="work-card-action" type="button" onClick={onPreview} aria-label={`ampliar ${title}`}>ver</button>}
     </div>
-    <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>
+    <div className="work-card-copy"><strong>{title}</strong><small>{kind}</small>{instagram && playing ? <a href={href} target="_blank" rel="noreferrer">abrir no instagram</a> : mode === 'link' && href ? <a href={href} target="_blank" rel="noreferrer">instagram</a> : <span>{String(index + 1).padStart(2, '0')}</span>}</div>
   </article>
 }
 function WorkGroup({ group, index }) {
   const [activePreview, setActivePreview] = useState(null)
   const previewItems = group.works.flatMap((work, workIndex) => {
-    const [src, title, , href, , gallery] = work
-    if (href.includes('instagram.com')) return []
+    const [src, title, , href, , gallery, mode] = work
+    if (href.includes('instagram.com') && mode !== 'link') return []
     const sources = gallery || [src]
     return sources.map((source, pageIndex) => ({ src: source, title, workIndex, pageIndex, pageCount: sources.length }))
   })
